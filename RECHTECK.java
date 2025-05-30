@@ -85,7 +85,7 @@ extends Rechteck
         this.M_x = 6;
         this.M_y = 4;
         super.setzeMittelpunkt( this.M_x , this.M_y );
-        
+        machePassiv();
     }
     
     
