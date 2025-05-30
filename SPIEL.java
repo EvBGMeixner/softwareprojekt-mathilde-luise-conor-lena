@@ -36,7 +36,7 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
     private int zaehler;
     
     private Figur hintergrundbild;
-    Level1 level;
+    
     
     
     
@@ -72,7 +72,6 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
     public SPIEL ( boolean maus )
     {
         this ( 800 , 600 , maus );
-        level= new Level1();
         
     }
     
@@ -88,7 +87,7 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
      */
     public SPIEL(int fensterbreite, int fensterhöhe, boolean maus ) 
     {
-        setzeFensterGroesse( 1100 , 700 );
+        setzeFensterGroesse( fensterbreite , fensterhöhe );
         //Zaehler fuer Tick, Tack, ...
         zaehler = 0;
         //Maus ggf. aktivieren
