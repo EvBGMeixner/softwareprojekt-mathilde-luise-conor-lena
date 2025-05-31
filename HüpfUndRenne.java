@@ -18,17 +18,15 @@ public class HüpfUndRenne extends SPIEL
         spielfigur.macheAktiv();
         bildAktualisierungReagieren(0.02);
         zeigeKoordinatensystem(true);
-        
+        setzeKamerafokus(spielfigur);
     }
     
     public void bildAktualisierungReagieren(double sekunden){
         if(istTasteGedrueckt(39)==true){
              spielfigur.verschieben(0.05, 0);
-             verschiebeKamera(0.05, 0);
         }
         if(istTasteGedrueckt(37)==true){
             spielfigur.verschieben(-0.05, 0);
-            verschiebeKamera(-0.05, 0);
         }
     }
     
