@@ -4,6 +4,7 @@ public class HüpfUndRenne extends SPIEL
 {
     SPIEL spiel;
     int level;
+    int variante;
     //FIGUR spielfigur;
     //KREIS spielfigur;
     RECHTECK spielfigur;
@@ -32,19 +33,22 @@ public class HüpfUndRenne extends SPIEL
         kreise = new KREIS[10];
         for(int i=0;i<rechteck.length;i++){
         rechteck[i]= new RECHTECK(1, 1);
+        rechteck[i].setzeMittelpunkt(0, 100);
         }
         for(int i=0;i<rechteck2.length;i++){
         rechteck2[i]=new RECHTECK(1, 1);
+        rechteck2[i].setzeMittelpunkt(0, 100);
         rechteck2[i].setzeFarbe("Rot");
         }
         
         level=1;
+        variante=1;
         level1();
         
         bildAktualisierungReagieren(0.02);
         setzeKamerafokus(spielfigur);
         
-        setzeSchwerkraft(12);
+        setzeSchwerkraft(15);
         
         zeigeKoordinatensystem(true);   
     }
@@ -53,10 +57,10 @@ public class HüpfUndRenne extends SPIEL
     public void bildAktualisierungReagieren(double sekunden){
         //bewegen
         if(istTasteGedrueckt(39)==true){
-             spielfigur.verschieben(0.05, 0);
+             spielfigur.verschieben(0.07, 0);
         }
         if(istTasteGedrueckt(37)==true){
-            spielfigur.verschieben(-0.05, 0);
+            spielfigur.verschieben(-0.07, 0);
         }
         //sterben
         for(int i=0;i<rechteck2.length;i++){
@@ -72,7 +76,7 @@ public class HüpfUndRenne extends SPIEL
     public void tasteReagieren(int taste){
         //springen
         if(taste==38){
-            spielfigur.springe(8);
+            spielfigur.springe(9);
             
         }
         //ducken -> evtl nicht möglich mit bild als figur
@@ -90,6 +94,7 @@ public class HüpfUndRenne extends SPIEL
     //sterben-> noch verschönern
     public void sterben(){
         if(level==1){
+            variante=2;
             level1();
         }
     }
@@ -105,25 +110,42 @@ public class HüpfUndRenne extends SPIEL
         
     //level
     public void level1(){
+        
         spielfigur.setzeMittelpunkt(0, 0);
         gewinn.setzeGroesse(1, 1);
-        gewinn.setzeMittelpunkt(4, 4);
+        gewinn.setzeMittelpunkt(4, 100);
         //boden
-        rechteck[0].setzeGroesse(20, 1);
-        rechteck[0].setzeMittelpunkt(0, -7);
-        //block um zu springen
-        rechteck[1].setzeGroesse(5, 1);
-        rechteck[1].setzeMittelpunkt(2, -6);
-        //block um zu ducken
-        rechteck[2].setzeGroesse(5, 10);
-        rechteck[2].setzeMittelpunkt(4, -3);
-        //block um an wand zu springen
-        rechteck[3].setzeGroesse(5, 0.5);
-        rechteck[3].setzeMittelpunkt(2, -6.25);
+        rechteck[0].setzeGroesse(50, 1);
+        rechteck[0].setzeMittelpunkt(20, -7);
+        //1.stufe
+        rechteck[1].setzeGroesse(2, 0.5);
+        rechteck[1].setzeMittelpunkt(5, -4.25);
+        //2.stufe
+        rechteck[2].setzeGroesse(2, 0.5);
+        rechteck[2].setzeMittelpunkt(8, -1.75);
+        //3.stufe
+        rechteck[3].setzeGroesse(2, 0.5);
+        rechteck[3].setzeMittelpunkt(5, 0.75);
+        //4.stufe
+        if(variante==2){
+            rechteck[4].setzeGroesse(2, 0.5);
+            rechteck[4].setzeMittelpunkt(8, 3.25);
+        }
+        //2.Ebene
+        rechteck[5].setzeGroesse(20, 0.5);
+        rechteck[5].setzeMittelpunkt(20, 4.25);
+        
         
         //hindernisse(0-9)
-        rechteck2[0].setzeGroesse(5, 0.4);
-        rechteck2[0].setzeMittelpunkt(1, -6.25);
+        //lern hindernis
+        rechteck2[0].setzeGroesse(2, 0.5);
+        rechteck2[0].setzeMittelpunkt(2, 2.25);
+        //bodenhindernis
+        rechteck2[1].setzeGroesse(10, 1);
+        rechteck2[1].setzeMittelpunkt(20, -7);
+        //ducken lernen
+        rechteck2[6].setzeGroesse(5, 4);
+        rechteck2[6].setzeMittelpunkt(16, 7);
         //rahmen(10-20)
         rechteck2[10].setzeGroesse(70,0.1);
         rechteck2[10].setzeMittelpunkt(0, -20);
@@ -143,6 +165,7 @@ public class HüpfUndRenne extends SPIEL
         //1.stufe
         rechteck[3].setzeGroesse(5, 0.5);
         rechteck[3].setzeMittelpunkt(2, -6.25);
+        
         
         //hindernisse(0-9)
         rechteck2[0].setzeGroesse(5, 0.4);
