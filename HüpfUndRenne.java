@@ -5,6 +5,7 @@ public class HüpfUndRenne extends SPIEL
     
     int level;
     int level2; //freigeschaltetes level
+    int anzahlLevel;
     int variante;
     boolean maus;
     //FIGUR spielfigur;
@@ -22,14 +23,15 @@ public class HüpfUndRenne extends SPIEL
      */
     public HüpfUndRenne()
     {
-        maus=false;
+        maus=true;
         
         //spielfigur = new FIGUR("muss noch ein bild eingefügt werden");
         //spielfigur=new KREIS(0.3);
-        spielfigur=new RECHTECK(0.6,0.8);
-        spielfigur.macheAktiv();
-        spielfigur.setzeFarbe("grün");
         gewinn=new RECHTECK(1,1);
+        gewinn.setzeMittelpunkt(-100, 0);
+        spielfigur=new RECHTECK(0.6,0.8);
+        
+        spielfigur.setzeFarbe("grün");
         gewinn.setzeFarbe("grün");
         
         rechteck=new RECHTECK[10];
@@ -58,20 +60,26 @@ public class HüpfUndRenne extends SPIEL
         level=1;
         level2=1;
         variante=1;
-        level1();
+        anzahlLevel=5;
+        //level1();
+        start();
         
         
         bildAktualisierungReagieren(0.02);
-        setzeKamerafokus(spielfigur);
+        
         
         setzeSchwerkraft(15);
         
-        //zeigeKoordinatensystem(true);   
+        zeigeKoordinatensystem(true);   
     }
+    
     
     public void klickReagieren(double x, double y) 
     {
-        if (x>knopf[0].nenneMx()-knopf[0].nenneBreite()/2&&x<knopf[0].nenneMx()+knopf[0].nenneBreite()/2){
+        //knopf 0 reagieren, neustart
+        if (x>knopf[0].nenneMx()-2.5&&x<knopf[0].nenneMx()+2.5
+            //&&y-koordinate
+            ){
             maus=false;
             if(level==1){
                 variante=2;
@@ -83,7 +91,13 @@ public class HüpfUndRenne extends SPIEL
             knopf[0].setzeMittelpunkt(0, 100);
             text[0].setzeMittelpunkt(0, 100);
         }
-        
+        for(int i=1;i<anzahlLevel+1;i++){
+            if(x>knopf[i].nenneMx()-2.5&&x<knopf[i].nenneMx()+2.5&&
+                y>knopf[i].nenneMy()-1&&y<knopf[i].nenneMy()+1&&knopf[i].nenneTransparenz()==0){
+                    level=i;
+                    level();
+                }
+        }
     }
     public void bildAktualisierungReagieren(double sekunden){
         //bewegen
@@ -103,6 +117,7 @@ public class HüpfUndRenne extends SPIEL
         if(spielfigur.beruehrt(gewinn)){
             gewinnen();
         }
+        
         //maus
         if ( maus ) 
         {
@@ -153,16 +168,54 @@ public class HüpfUndRenne extends SPIEL
     
     //gewinnen -> methode für level2
     public void gewinnen(){
-        level++;
-        if(level==2){
-            level2();
+        
+        if(level==level2){
+            level2++;
+            start();
         }
     }
     
         
     //level
+    public void start(){
+        maus=true;
+        spielfigur.machePassiv();
+        spielfigur.setzeMittelpunkt(-100, 0);
+        setzeKamerafokus(knopf[3]);
+        //aufräumen
+        for(int i=0; i<rechteck.length;i++){
+            rechteck[i].setzeMittelpunkt(0, 100);
+            rechteck2[i].setzeMittelpunkt(0, 100);
+            knopf[i].setzeMittelpunkt(0, 100);
+        }
+        for(int i=1; i<anzahlLevel; i++){
+            knopf[i].setzeMittelpunkt(5*i-15, 0);
+            text[i].setzeMittelpunkt(5*i-15, 0);
+            text[i].setzeInhalt(i);
+            
+        }
+        for(int i=level2+1;i<6;i++){
+            knopf[i].animiereTransparenz(0, 0.5);
+        }
+        for(int i=level2;i>0;i--){
+            knopf[i].animiereTransparenz(0, 0);
+        }
+    }
+    public void level(){
+        spielfigur.macheAktiv();
+        setzeKamerafokus(spielfigur);
+        if(level==1){
+            level1();
+        }
+        if(level==2){
+            level2();
+        }
+        if(level==3){
+            level1();
+        }
+    }
     public void level1(){
-        
+        //level=1;
         
         spielfigur.setzeMittelpunkt(0, 0);
         gewinn.setzeGroesse(1, 1);
@@ -211,6 +264,8 @@ public class HüpfUndRenne extends SPIEL
     }
     
     public void level2(){
+        level=2;
+        
         spielfigur.setzeMittelpunkt(0, 0);
         //boden
         rechteck[0].setzeGroesse(20, 1);
