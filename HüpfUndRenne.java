@@ -15,36 +15,24 @@ public class HüpfUndRenne extends SPIEL
         //spielfigur = new FIGUR("muss noch ein bild eingefügt werden");
         spielfigur=new KREIS(0.3);
         spielfigur.macheAktiv();
-        //starteTickerNeu(0.05);
+        bildAktualisierungReagieren(0.05);
     }
-    public void tick(){
+    
+    public void bildAktualisierungReagieren(double sekunden){
         if(istTasteGedrueckt(39)==true){
-             spielfigur.verschieben(0.05, 0);
+             spielfigur.verschieben(0.1, 0);
         }
         if(istTasteGedrueckt(37)==true){
-            spielfigur.verschieben(-0.05, 0);
+            spielfigur.verschieben(-0.1, 0);
         }
     }
     
-    public void tasteReagieren( int taste ) 
-    {
+    public void tasteReagieren(int taste){
         if(taste==38){
             spielfigur.springe(7);
             
         }
-        if(taste==39){
-            starteTickerNeu(0.05);
-            
-        }
-        
         }
     
-    public void tasteLosgelassenReagieren(int taste){
-        if(taste==39){
-            stoppeTicker();
-            
-        }
-    }
-
     
 }
