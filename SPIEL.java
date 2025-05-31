@@ -71,7 +71,7 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
      */
     public SPIEL ( boolean maus )
     {
-        this ( 800 , 600 , maus );
+        this ( 1100 , 700 , maus );
         
     }
     
