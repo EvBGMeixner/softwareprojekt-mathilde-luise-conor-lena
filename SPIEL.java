@@ -48,7 +48,7 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
      */
     public SPIEL() 
     {
-        this( false );
+        this( 1100, 700, false );
     }
     
     
@@ -108,9 +108,7 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
     }
     
     
-    void level1(){
-        
-    }
+    
     // =====   G e s t a l t e n   d e s   S p i e l f e l d e s  =========================================
     
     /**

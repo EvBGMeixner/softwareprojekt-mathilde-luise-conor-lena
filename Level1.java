@@ -15,5 +15,7 @@ public class Level1
         rechtecke[1].setzeMittelpunkt(2, -5);
         rechtecke[2]= new RECHTECK(5, 0.5);
         rechtecke[2].setzeMittelpunkt(4, -3);
+        rechtecke[3]= new RECHTECK(5, 0.5);
+        rechtecke[3].setzeMittelpunkt(2, -6.25);
     }
 }
