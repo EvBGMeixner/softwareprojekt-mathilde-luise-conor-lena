@@ -4,6 +4,7 @@ public class HüpfUndRenne extends SPIEL
 {
     
     int level;
+    int level2; //freigeschaltetes level
     int variante;
     boolean maus;
     //FIGUR spielfigur;
@@ -55,8 +56,10 @@ public class HüpfUndRenne extends SPIEL
         }
         
         level=1;
+        level2=1;
         variante=1;
         level1();
+        
         
         bildAktualisierungReagieren(0.02);
         setzeKamerafokus(spielfigur);
@@ -138,7 +141,7 @@ public class HüpfUndRenne extends SPIEL
             rechteck2[i].setzeFarbe("Rot");
         }
         gewinn.setzeMittelpunkt(0, 100);
-        
+
         setzeKamerafokus(knopf[0]);
         text[0].setzeInhalt("Neustart");
         text[0].setzeMittelpunkt(0, 0);
