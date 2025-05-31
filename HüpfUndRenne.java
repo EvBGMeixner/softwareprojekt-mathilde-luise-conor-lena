@@ -11,6 +11,7 @@ public class HüpfUndRenne extends SPIEL
     RECHTECK gewinn;
     RECHTECK[] rechteck;
     RECHTECK[] rechteck2;//bei Berührung tot
+    RECHTECK[] knopf;
     
     KREIS[] kreise;
     /**
@@ -31,6 +32,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck=new RECHTECK[10];
         rechteck2=new RECHTECK[20];
         kreise = new KREIS[10];
+        knopf= new RECHTECK[10];
         for(int i=0;i<rechteck.length;i++){
         rechteck[i]= new RECHTECK(1, 1);
         rechteck[i].setzeMittelpunkt(0, 100);
@@ -39,6 +41,10 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[i]=new RECHTECK(1, 1);
         rechteck2[i].setzeMittelpunkt(0, 100);
         rechteck2[i].setzeFarbe("Rot");
+        }
+        for(int i=0;i<knopf.length;i++){
+        knopf[i]= new RECHTECK(1, 1);
+        knopf[i].setzeMittelpunkt(0, 100);
         }
         
         level=1;
@@ -95,6 +101,7 @@ public class HüpfUndRenne extends SPIEL
     public void sterben(){
         if(level==1){
             variante=2;
+            knopf[0].setzeMittelpunkt(0, 0);
             level1();
         }
     }
