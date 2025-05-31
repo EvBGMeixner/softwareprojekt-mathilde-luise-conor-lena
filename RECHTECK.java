@@ -78,7 +78,7 @@ extends Rechteck
         //this.rechteck = new Rechteck( breite, hoehe);
         this.sichtbar = true;
         super.setzeSichtbar( true );
-        this.farbe = "Rot";
+        this.farbe = "Blau";
         super.setzeFarbe( this.farbe );
         this.breite = breite;
         this.hoehe = hoehe;
