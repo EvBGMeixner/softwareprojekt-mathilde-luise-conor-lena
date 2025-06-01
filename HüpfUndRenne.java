@@ -116,7 +116,7 @@ public class HüpfUndRenne extends SPIEL
         if ( maus ) 
         {
             registriereMausKlickReagierbar( this );
-            registriereMausRadReagierbar( this );
+            //registriereMausRadReagierbar( this );
         }
     }
     public void tasteReagieren(int taste){
