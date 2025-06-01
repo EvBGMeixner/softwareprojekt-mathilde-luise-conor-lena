@@ -15,6 +15,7 @@ public class HüpfUndRenne extends SPIEL
     RECHTECK[] rechteck;
     RECHTECK[] rechteck2;//bei Berührung tot
     RECHTECK[] knopf;
+    KNOPF[] knopf2;
     TEXT[] text; 
     
     KREIS[] kreise;
