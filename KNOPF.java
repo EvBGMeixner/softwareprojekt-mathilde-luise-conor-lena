@@ -12,6 +12,7 @@ public class KNOPF
     boolean klick;
     public KNOPF(double x, double y, String inhalt)
     {
+        
         rechteck = new RECHTECK(5,2);
         rechteck.setzeMittelpunkt(x, y);
         text = new TEXT(x,y,1,inhalt);
