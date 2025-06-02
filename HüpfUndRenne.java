@@ -14,8 +14,8 @@ public class HüpfUndRenne extends SPIEL
     RECHTECK gewinn;
     RECHTECK[] rechteck;
     RECHTECK[] rechteck2;//bei Berührung tot
-    RECHTECK[] knopf;
-    KNOPF[] knopf2;
+    KNOPF[] knopf;
+    
     TEXT[] text; 
     
     KREIS[] kreise;
@@ -38,8 +38,8 @@ public class HüpfUndRenne extends SPIEL
         rechteck=new RECHTECK[10];
         rechteck2=new RECHTECK[20];
         kreise = new KREIS[10];
-        knopf= new RECHTECK[10];
-        knopf2= new KNOPF[10];
+        knopf= new KNOPF[10];
+        
         text = new TEXT[10];
         for(int i=0;i<rechteck.length;i++){
         rechteck[i]= new RECHTECK(1, 1);
@@ -51,12 +51,8 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[i].setzeFarbe("Rot");
         }
         for(int i=0;i<knopf.length;i++){
-        knopf[i]= new RECHTECK(5, 2);
+        knopf[i]= new KNOPF(5, 2, "a");
         knopf[i].setzeMittelpunkt(0, 100);
-        }
-        for(int i=0;i<knopf2.length;i++){
-        knopf2[i]= new KNOPF(5, 2, "a");
-        knopf2[i].setzeMittelpunkt(0, 100);
         }
         for(int i=0;i<text.length;i++){
         text[i]= new TEXT(0,100,1,"a");
@@ -83,11 +79,9 @@ public class HüpfUndRenne extends SPIEL
         //knopf 0 reagieren, neustart
         if (x>knopf[0].nenneMx()-2.5&&x<knopf[0].nenneMx()+2.5
             &&y>knopf[0].nenneMy()-0.5&&y<knopf[0].nenneMy()+0.5){
-            maus=false;
             variante=2;
             level();
             knopf[0].setzeMittelpunkt(0, 100);
-            text[0].setzeMittelpunkt(0, 100);
         }
         for(int i=1;i<anzahlLevel+1;i++){
             if(x>knopf[i].nenneMx()-2.5&&x<knopf[i].nenneMx()+2.5&&
@@ -97,7 +91,6 @@ public class HüpfUndRenne extends SPIEL
                 }
         }
     }
-    
     public void bildAktualisierungReagieren(double sekunden){
         //bewegen
         if(istTasteGedrueckt(39)==true){
@@ -116,7 +109,6 @@ public class HüpfUndRenne extends SPIEL
         if(spielfigur.beruehrt(gewinn)){
             gewinnen();
         }
-        
         //maus
         if ( maus ) 
         {
@@ -145,67 +137,57 @@ public class HüpfUndRenne extends SPIEL
     //sterben-> noch verschönern
     public void sterben(){
         maus=true;
-        knopf[0].setzeMittelpunkt(0, 0);
+        
+        //aufräumen
         spielfigur.machePassiv();
         spielfigur.setzeMittelpunkt(-100, 0);
-        
         for(int i=0;i<rechteck.length;i++){
             rechteck[i].setzeMittelpunkt(0, 100);
         }
         for(int i=0;i<rechteck2.length;i++){
             rechteck2[i].setzeMittelpunkt(0, 100);
-            rechteck2[i].setzeFarbe("Rot");
         }
         gewinn.setzeMittelpunkt(0, 100);
-
-        setzeKamerafokus(knopf[0]);
-        text[0].setzeInhalt("Neustart");
-        text[0].setzeMittelpunkt(0, 0);
         
         
-        
-        
+        knopf[0].setzeMittelpunkt(0, 0);
+        setzeKamerafokus(knopf[0].rechteck);
+        knopf[0].setzeInhalt("Neustart");
     }
-    
     //gewinnen
     public void gewinnen(){
-        
         if(level==level2){
             level2++;
-            start();
         }
+        start();
     }
     
-        
     //level
     public void start(){
         maus=true;
         spielfigur.machePassiv();
         spielfigur.setzeMittelpunkt(-100, 0);
-        setzeKamerafokus(knopf[3]);
+        setzeKamerafokus(knopf[3].rechteck);
         //aufräumen
         for(int i=0; i<rechteck.length;i++){
             rechteck[i].setzeMittelpunkt(0, 100);
             rechteck2[i].setzeMittelpunkt(0, 100);
-            knopf[i].setzeMittelpunkt(0, 100);
         }
         gewinn.setzeMittelpunkt(0, 100);
         for(int i=1; i<anzahlLevel; i++){
-            knopf[i].setzeMittelpunkt(5*i-15, 0);
-            text[i].setzeMittelpunkt(5*i-15, 0);
-            text[i].setzeInhalt(i);
+            knopf[i].setzeAlles(i, 5*i-15, 0);
         }
         for(int i=level2+1;i<6;i++){
-            knopf[i].animiereTransparenz(0, 0.5);
+            knopf[i].setzeTransparenz(0.5);
         }
         for(int i=level2;i>0;i--){
-            knopf[i].animiereTransparenz(0, 0);
+            knopf[i].setzeTransparenz(0);
         }
     }
     public void level(){
+        maus = false;
         for(int i=1; i<knopf.length;i++){
             knopf[i].setzeMittelpunkt(0, 100);
-            text[i].setzeMittelpunkt(0, 100);
         }
         spielfigur.macheAktiv();
         setzeKamerafokus(spielfigur);
@@ -220,7 +202,6 @@ public class HüpfUndRenne extends SPIEL
         }
     }
     public void level1(){
-        //level=1;
         
         spielfigur.setzeMittelpunkt(0, 0);
         gewinn.setzeGroesse(1, 1);
