@@ -76,16 +76,15 @@ public class HüpfUndRenne extends SPIEL
     
     public void klickReagieren(double x, double y) 
     {
-        //knopf 0 reagieren, neustart
-        if (x>knopf[0].nenneMx()-2.5&&x<knopf[0].nenneMx()+2.5
-            &&y>knopf[0].nenneMy()-0.5&&y<knopf[0].nenneMy()+0.5){
+        //knopf reagieren
+        if (knopf[0].klick(x,y)==true)
+        {
             variante=2;
             level();
             knopf[0].setzeMittelpunkt(0, 100);
         }
         for(int i=1;i<anzahlLevel+1;i++){
-            if(x>knopf[i].nenneMx()-2.5&&x<knopf[i].nenneMx()+2.5&&
-                y>knopf[i].nenneMy()-1&&y<knopf[i].nenneMy()+1&&knopf[i].nenneTransparenz()==0){
+            if(knopf[i].klick(x,y)==true&&knopf[i].nenneTransparenz()==0){
                     level=i;
                     level();
                 }

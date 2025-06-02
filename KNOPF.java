@@ -12,7 +12,6 @@ public class KNOPF
     boolean klick;
     public KNOPF(double x, double y, String inhalt)
     {
-        //registriereMausKlickReagierbar( this );
         rechteck = new RECHTECK(5,2);
         rechteck.setzeMittelpunkt(x, y);
         text = new TEXT(x,y,1,inhalt);
@@ -46,10 +45,10 @@ public class KNOPF
         setzeMittelpunkt(x, y);
     }
     public boolean klick(double x, double y){
-        if(x<nenneMx()+rechteck.nenneBreite()&&x>nenneMx()-rechteck.nenneBreite()&&
-            x<nenneMy()+rechteck.nenneHoehe()&&x>nenneMy()-rechteck.nenneHoehe()){
-                return true;
-            }
+        if(x<nenneMx()+rechteck.nenneBreite()/2&&x>nenneMx()-rechteck.nenneBreite()/2&&
+            y<nenneMy()+rechteck.nenneHoehe()/2&&y>nenneMy()-rechteck.nenneHoehe()/2){
+            return true;
+        }
         else{
             return false;
         }
