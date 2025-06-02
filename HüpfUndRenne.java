@@ -116,16 +116,21 @@ public class HüpfUndRenne extends SPIEL
             registriereMausKlickReagierbar( this );
         }
         //2.level
-        if(level==2&&spielfigur.beruehrt(rechteck[1])){
-            rechteck[3].macheDynamisch();
-            raktiv=true;
-        }
-        //zerquetschen
-        
-        if(raktiv &&spielfigur.stehtAuf(rechteck[3])){
+        if(level==2){
+            if(spielfigur.beruehrt(rechteck[1])){
+                rechteck[3].macheDynamisch();
+                raktiv=true;
+            }
+            if(rechteck[3].beruehrt(rechteck[1])){
+                rechteck[3].machePassiv();
+                raktiv=false;
+            }
+            //zerquetschen
+            if(raktiv &&spielfigur.stehtAuf(rechteck[3])){
                 sterben();
                 rechteck[3].machePassiv();
                 raktiv=false;
+            }
         }
     }
     public void tasteReagieren(int taste){
@@ -264,6 +269,9 @@ public class HüpfUndRenne extends SPIEL
     
     public void level2(){
         level=2;
+        //rahmen(10-20)
+        rechteck2[10].setzeGroesse(200,0.1);
+        rechteck2[10].setzeMittelpunkt(0, -20);
         
         spielfigur.setzeMittelpunkt(0, 0);
         //boden
