@@ -62,7 +62,7 @@ public class HüpfUndRenne extends SPIEL
         }
         
         level=1;
-        level2=4;//eig 1 aber besser zum level ausprobieren
+        level2=1;//eig 1 aber besser zum level ausprobieren
         variante=1;
         anzahlLevel=5;
         raktiv=false;
@@ -72,7 +72,7 @@ public class HüpfUndRenne extends SPIEL
         
         setzeSchwerkraft(15);
         
-        zeigeKoordinatensystem(true);   
+        //zeigeKoordinatensystem(true);   
     }
     
     
@@ -114,21 +114,19 @@ public class HüpfUndRenne extends SPIEL
         if ( maus ) 
         {
             registriereMausKlickReagierbar( this );
-            //registriereMausRadReagierbar( this );
         }
         //2.level
         if(level==2&&spielfigur.beruehrt(rechteck[1])){
-            rechteck[3].macheAktiv();
             rechteck[3].macheDynamisch();
             raktiv=true;
         }
         //zerquetschen
         
-        if(raktiv &&rechteck[3].stehtAuf(spielfigur)){
+        if(raktiv &&spielfigur.stehtAuf(rechteck[3])){
                 sterben();
                 rechteck[3].machePassiv();
+                raktiv=false;
         }
-        
     }
     public void tasteReagieren(int taste){
         //springen
