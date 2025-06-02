@@ -39,6 +39,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck2=new RECHTECK[20];
         kreise = new KREIS[10];
         knopf= new RECHTECK[10];
+        knopf2= new KNOPF[10];
         text = new TEXT[10];
         for(int i=0;i<rechteck.length;i++){
         rechteck[i]= new RECHTECK(1, 1);
@@ -53,6 +54,10 @@ public class HüpfUndRenne extends SPIEL
         knopf[i]= new RECHTECK(5, 2);
         knopf[i].setzeMittelpunkt(0, 100);
         }
+        for(int i=0;i<knopf2.length;i++){
+        knopf2[i]= new KNOPF(5, 2, "a");
+        knopf2[i].setzeMittelpunkt(0, 100);
+        }
         for(int i=0;i<text.length;i++){
         text[i]= new TEXT(0,100,1,"a");
         text[i].setzeMittelpunkt(0, 100);
@@ -65,9 +70,7 @@ public class HüpfUndRenne extends SPIEL
         //level1();
         start();
         
-        
         bildAktualisierungReagieren(0.02);
-        
         
         setzeSchwerkraft(15);
         
@@ -94,6 +97,7 @@ public class HüpfUndRenne extends SPIEL
                 }
         }
     }
+    
     public void bildAktualisierungReagieren(double sekunden){
         //bewegen
         if(istTasteGedrueckt(39)==true){
