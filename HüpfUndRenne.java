@@ -8,6 +8,7 @@ public class HüpfUndRenne extends SPIEL
     int anzahlLevel;
     int variante;
     boolean maus;
+    boolean raktiv;
     //FIGUR spielfigur;
     //KREIS spielfigur;
     RECHTECK spielfigur;
@@ -31,6 +32,7 @@ public class HüpfUndRenne extends SPIEL
         gewinn=new RECHTECK(1,1);
         gewinn.setzeMittelpunkt(-100, 0);
         spielfigur=new RECHTECK(0.6,0.8);
+        
         
         spielfigur.setzeFarbe("grün");
         gewinn.setzeFarbe("grün");
@@ -60,10 +62,10 @@ public class HüpfUndRenne extends SPIEL
         }
         
         level=1;
-        level2=1;
+        level2=4;//eig 1 aber besser zum level ausprobieren
         variante=1;
         anzahlLevel=5;
-        //level1();
+        raktiv=false;
         start();
         
         bildAktualisierungReagieren(0.02);
@@ -114,6 +116,19 @@ public class HüpfUndRenne extends SPIEL
             registriereMausKlickReagierbar( this );
             //registriereMausRadReagierbar( this );
         }
+        //2.level
+        if(level==2&&spielfigur.beruehrt(rechteck[1])){
+            rechteck[3].macheAktiv();
+            rechteck[3].macheDynamisch();
+            raktiv=true;
+        }
+        //zerquetschen
+        
+        if(raktiv &&rechteck[3].stehtAuf(spielfigur)){
+                sterben();
+                rechteck[3].machePassiv();
+        }
+        
     }
     public void tasteReagieren(int taste){
         //springen
@@ -173,7 +188,8 @@ public class HüpfUndRenne extends SPIEL
             rechteck2[i].setzeMittelpunkt(0, 100);
         }
         gewinn.setzeMittelpunkt(0, 100);
-        for(int i=1; i<anzahlLevel; i++){
+        //neu
+        for(int i=1; i<anzahlLevel+1; i++){
             knopf[i].setzeAlles(i, 5*i-15, 0);
         }
         for(int i=level2+1;i<6;i++){
@@ -253,25 +269,25 @@ public class HüpfUndRenne extends SPIEL
         
         spielfigur.setzeMittelpunkt(0, 0);
         //boden
-        rechteck[0].setzeGroesse(20, 1);
-        rechteck[0].setzeMittelpunkt(0, -7);
-        //2.stufe
-        rechteck[1].setzeGroesse(5, 0.5);
-        rechteck[1].setzeMittelpunkt(3, -5);
-        //3.stufe
-        rechteck[2].setzeGroesse(5, 10);
-        rechteck[2].setzeMittelpunkt(4, -3);
-        //1.stufe
-        rechteck[3].setzeGroesse(5, 0.5);
-        rechteck[3].setzeMittelpunkt(2, -6.25);
+        rechteck[0].setzeGroesse(50, 1);
+        rechteck[0].setzeMittelpunkt(20, -7);
+        //sensor
+        rechteck[1].setzeGroesse(1, 1);
+        rechteck[1].setzeMittelpunkt(15.5, -7);
+        //decke
+        rechteck[2].setzeGroesse(20, 10);
+        rechteck[2].setzeMittelpunkt(15, 5);
+        //fallen
+        rechteck[3].setzeGroesse(8, 0.5);
+        rechteck[3].setzeMittelpunkt(18, 0.5);
         
         
         //hindernisse(0-9)
-        rechteck2[0].setzeGroesse(5, 0.4);
-        rechteck2[0].setzeMittelpunkt(1, -6.25);
+        //rechteck2[0].setzeGroesse(5, 0.4);
+        //rechteck2[0].setzeMittelpunkt(1, -6.25);
         //rahmen(10-20)
-        rechteck2[10].setzeGroesse(70,0.1);
-        rechteck2[10].setzeMittelpunkt(0, -20);
+        //rechteck2[10].setzeGroesse(70,0.1);
+        //rechteck2[10].setzeMittelpunkt(0, -20);
     }
     
     
