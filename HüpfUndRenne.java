@@ -16,7 +16,7 @@ public class HüpfUndRenne extends SPIEL
     RECHTECK[] rechteck;
     RECHTECK[] rechteck2;//bei Berührung tot
     KNOPF[] knopf;
-    INFO[] info;
+    //INFO[] info;
     
     TEXT[] text; 
     
@@ -42,7 +42,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck2=new RECHTECK[20];
         kreise = new KREIS[10];
         knopf= new KNOPF[10];
-        info=new INFO[10];
+        //info=new INFO[10];
         text = new TEXT[10];
         for(int i=0;i<rechteck.length;i++){
         rechteck[i]= new RECHTECK(1, 1);
@@ -61,9 +61,9 @@ public class HüpfUndRenne extends SPIEL
         text[i]= new TEXT(0,100,1,"a");
         text[i].setzeMittelpunkt(0, 100);
         }
-        for(int i=0;i<info.length;i++){
-        info[i]= new INFO(0,100,"a");
-        }
+        //for(int i=0;i<info.length;i++){
+        //info[i]= new INFO(0,100,"a");
+        //}
         
         level=1;
         level2=4;//eig 1 aber besser zum level ausprobieren
