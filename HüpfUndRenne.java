@@ -149,22 +149,17 @@ public class HüpfUndRenne extends SPIEL
         switch(taste){
             case 38: spielfigur.springe(9);
             break;
-            case 40: spielfigur.setzeZustand("läuft");
+            case 40: spielfigur.setzeZustand("duckt");
+            //spielfigur.anzahlY=1;
         }
-        //if(taste==38){
-            //spielfigur.springe(9);
-            
-        //}
-        //ducken -> evtl nicht möglich mit bild als figur
-        //(taste==40){
-            //spielfigur.skaliere(0.5);
-        //}
+        
         }
     public void tasteLosgelassenReagieren(int taste){
         //aufrichten
-        if(taste==40){
-            spielfigur.skaliere(2);
+        switch(taste){
+            case 40: spielfigur.setzeZustand("duckt");
         }
+        
         }
     
     //sterben-> noch verschönern
