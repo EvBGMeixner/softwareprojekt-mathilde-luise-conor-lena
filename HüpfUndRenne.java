@@ -9,13 +9,13 @@ public class HüpfUndRenne extends SPIEL
     int variante;
     boolean maus;
     boolean raktiv;
-    //FIGUR spielfigur;
-    //KREIS spielfigur;
-    RECHTECK spielfigur;
+    FIGUR spielfigur;
+    //RECHTECK spielfigur;
     RECHTECK gewinn;
     RECHTECK[] rechteck;
     RECHTECK[] rechteck2;//bei Berührung tot
     KNOPF[] knopf;
+    
     //INFO[] info;
     
     TEXT[] text; 
@@ -28,14 +28,15 @@ public class HüpfUndRenne extends SPIEL
     {
         maus=true;
         
-        //spielfigur = new FIGUR("muss noch ein bild eingefügt werden");
-        //spielfigur=new KREIS(0.3);
+        spielfigur = new FIGUR("extensions2/Bild");
+        spielfigur.skaliere(0.15);
+        
         gewinn=new RECHTECK(1,1);
         gewinn.setzeMittelpunkt(-100, 0);
-        spielfigur=new RECHTECK(0.6,0.8);
+        //spielfigur=new RECHTECK(0.6,0.8);
         
         
-        spielfigur.setzeFarbe("grün");
+        //spielfigur.setzeFarbe("grün");
         gewinn.setzeFarbe("grün");
         
         rechteck=new RECHTECK[10];
@@ -64,13 +65,14 @@ public class HüpfUndRenne extends SPIEL
         //for(int i=0;i<info.length;i++){
         //info[i]= new INFO(0,100,"a");
         //}
-        
+        ;
         level=1;
-        level2=1;//eig 1 aber besser zum level ausprobieren
+        level2=4;//eig 1 aber besser zum level ausprobieren
         variante=1;
         anzahlLevel=5;
         raktiv=false;
         start();
+        setzeHintergrundgrafik("extensions2/Bild");
         
         bildAktualisierungReagieren(0.02);
         
@@ -136,6 +138,9 @@ public class HüpfUndRenne extends SPIEL
                 raktiv=false;
             }
         }
+        // if(spielfigur.beruehrt(hintergrundbild)){
+          //  System.out.print(true);
+        //}
     }
     public void tasteReagieren(int taste){
         //springen
@@ -145,13 +150,13 @@ public class HüpfUndRenne extends SPIEL
         }
         //ducken -> evtl nicht möglich mit bild als figur
         if(taste==40){
-            spielfigur.setzeGroesse(0.6, 0.4);
+            spielfigur.skaliere(0.5);
         }
         }
     public void tasteLosgelassenReagieren(int taste){
         //aufrichten
         if(taste==40){
-            spielfigur.setzeGroesse(0.6, 0.8);
+            spielfigur.skaliere(2);
         }
         }
     
