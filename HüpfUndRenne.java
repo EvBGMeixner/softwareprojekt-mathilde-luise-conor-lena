@@ -28,8 +28,10 @@ public class HüpfUndRenne extends SPIEL
     {
         maus=true;
         
-        spielfigur = new FIGUR("extensions2/bildsteht.png");
+        spielfigur = new FIGUR("steht","extensions2/bildsteht.png", 1, 1);
         spielfigur.skaliere(0.1);
+        spielfigur.fuegeZustandVonSpritesheetHinzu("läuft", "extensions2/bildläuft.png", 1, 1);
+        spielfigur.fuegeZustandVonSpritesheetHinzu("duckt", "extensions2/bildduckt.png", 1, 1);
         
         gewinn=new RECHTECK(1,1);
         gewinn.setzeMittelpunkt(-100, 0);
@@ -144,14 +146,19 @@ public class HüpfUndRenne extends SPIEL
     }
     public void tasteReagieren(int taste){
         //springen
-        if(taste==38){
-            spielfigur.springe(9);
+        switch(taste){
+            case 38: spielfigur.springe(9);
+            break;
+            case 40: spielfigur.setzeZustand("läuft");
+        }
+        //if(taste==38){
+            //spielfigur.springe(9);
             
-        }
+        //}
         //ducken -> evtl nicht möglich mit bild als figur
-        if(taste==40){
-            spielfigur.skaliere(0.5);
-        }
+        //(taste==40){
+            //spielfigur.skaliere(0.5);
+        //}
         }
     public void tasteLosgelassenReagieren(int taste){
         //aufrichten
@@ -232,7 +239,7 @@ public class HüpfUndRenne extends SPIEL
         
         spielfigur.setzeMittelpunkt(0, 0);
         gewinn.setzeGroesse(1, 1);
-        gewinn.setzeMittelpunkt(14.5, 10.5);
+        gewinn.setzeMittelpunkt(14.5, 11);
         
         //boden
         rechteck[0].setzeGroesse(50, 1);
@@ -256,10 +263,10 @@ public class HüpfUndRenne extends SPIEL
         rechteck[5].setzeMittelpunkt(20, 4.25);
         //wand an hindernis
         rechteck[6].setzeGroesse(0.5, 4.55);
-        rechteck[6].setzeMittelpunkt(18.75, 7.225);
+        rechteck[6].setzeMittelpunkt(18.75, 7.725);
         //ebene über hindernis
         rechteck[7].setzeGroesse(5, 0.5);
-        rechteck[7].setzeMittelpunkt(16, 9.25);
+        rechteck[7].setzeMittelpunkt(16, 9.75);
         
         //hindernisse(0-9)
         //lern hindernis
@@ -270,7 +277,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[1].setzeMittelpunkt(20, -7);
         //ducken lernen
         rechteck2[6].setzeGroesse(5, 4);
-        rechteck2[6].setzeMittelpunkt(16, 7);
+        rechteck2[6].setzeMittelpunkt(16, 7.5);
         //rahmen(10-20)
         rechteck2[10].setzeGroesse(200,0.1);
         rechteck2[10].setzeMittelpunkt(0, -20);
