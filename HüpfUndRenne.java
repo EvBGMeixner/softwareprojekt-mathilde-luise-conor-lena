@@ -66,7 +66,7 @@ public class HüpfUndRenne extends SPIEL
         //}
         
         level=1;
-        level2=4;//eig 1 aber besser zum level ausprobieren
+        level2=1;//eig 1 aber besser zum level ausprobieren
         variante=1;
         anzahlLevel=5;
         raktiv=false;
