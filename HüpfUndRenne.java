@@ -28,8 +28,8 @@ public class HüpfUndRenne extends SPIEL
     {
         maus=true;
         
-        spielfigur = new FIGUR("extensions2/Bild");
-        spielfigur.skaliere(0.15);
+        spielfigur = new FIGUR("extensions2/bildsteht.png");
+        spielfigur.skaliere(0.1);
         
         gewinn=new RECHTECK(1,1);
         gewinn.setzeMittelpunkt(-100, 0);
