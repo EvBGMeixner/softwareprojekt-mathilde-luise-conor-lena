@@ -30,7 +30,7 @@ public class HüpfUndRenne extends SPIEL
         
         spielfigur = new FIGUR("steht","extensions2/bildsteht.png", 1, 1);
         spielfigur.skaliere(0.1);
-        spielfigur.fuegeZustandVonSpritesheetHinzu("läuft", "extensions2/bildläuft.png", 1, 1);
+        spielfigur.fuegeZustandVonSpritesheetHinzu("laufen", "extensions2/bildlaufen.png", 1, 1);
         spielfigur.fuegeZustandVonSpritesheetHinzu("duckt", "extensions2/bildduckt.png", 1, 1);
         
         gewinn=new RECHTECK(1,1);
@@ -69,12 +69,12 @@ public class HüpfUndRenne extends SPIEL
         //}
         ;
         level=1;
-        level2=4;//eig 1 aber besser zum level ausprobieren
+        level2=1    ;//eig 1 aber besser zum level ausprobieren
         variante=1;
         anzahlLevel=5;
         raktiv=false;
         start();
-        setzeHintergrundgrafik("extensions2/Bild");
+        //setzeHintergrundgrafik("extensions2/Bild");
         
         bildAktualisierungReagieren(0.02);
         
@@ -147,9 +147,14 @@ public class HüpfUndRenne extends SPIEL
     public void tasteReagieren(int taste){
         //springen
         switch(taste){
+            case 37: spielfigur.setzeZustand("laufen");
+            break;
+            case 39: spielfigur.setzeZustand("laufen");
+            break;
             case 38: spielfigur.springe(9);
             break;
-            case 40: spielfigur.setzeZustand("duckt");
+            case 40: spielfigur.skaliere(0.5);
+            break;
             //spielfigur.anzahlY=1;
         }
         
@@ -157,7 +162,12 @@ public class HüpfUndRenne extends SPIEL
     public void tasteLosgelassenReagieren(int taste){
         //aufrichten
         switch(taste){
-            case 40: spielfigur.setzeZustand("duckt");
+            case 37: spielfigur.setzeZustand("steht");
+            break;
+            case 39: spielfigur.setzeZustand("steht");
+            break;
+            case 40: spielfigur.skaliere(2);
+            break;
         }
         
         }
