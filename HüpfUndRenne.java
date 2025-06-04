@@ -148,6 +148,7 @@ public class HüpfUndRenne extends SPIEL
         //springen
         switch(taste){
             case 37: spielfigur.setzeZustand("laufen");
+            spielfigur.spiegelnHorizontal(true);
             break;
             case 39: spielfigur.setzeZustand("laufen");
             break;
@@ -163,6 +164,7 @@ public class HüpfUndRenne extends SPIEL
         //aufrichten
         switch(taste){
             case 37: spielfigur.setzeZustand("steht");
+            spielfigur.spiegelnHorizontal(false);
             break;
             case 39: spielfigur.setzeZustand("steht");
             break;
