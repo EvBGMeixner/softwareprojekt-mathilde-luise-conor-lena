@@ -16,7 +16,7 @@ public class HüpfUndRenne extends SPIEL
     RECHTECK[] rechteck2;//bei Berührung tot
     KNOPF[] knopf;
     
-    //INFO[] info;
+    INFO[] info;
     
     TEXT[] text; 
     
@@ -45,7 +45,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck2=new RECHTECK[20];
         kreise = new KREIS[10];
         knopf= new KNOPF[10];
-        //info=new INFO[10];
+        info=new INFO[10];
         text = new TEXT[10];
         for(int i=0;i<rechteck.length;i++){
         rechteck[i]= new RECHTECK(1, 1);
@@ -64,12 +64,12 @@ public class HüpfUndRenne extends SPIEL
         text[i]= new TEXT(0,100,1,"a");
         text[i].setzeMittelpunkt(0, 100);
         }
-        //for(int i=0;i<info.length;i++){
-        //info[i]= new INFO(0,100,"a");
-        //}
+        for(int i=0;i<info.length;i++){
+        info[i]= new INFO(0,100,"a");
+        }
         ;
-        level=1;
-        level2=1    ;//eig 1 aber besser zum level ausprobieren
+        level=0;
+        level2=4;//eig 1 aber besser zum level ausprobieren
         variante=1;
         anzahlLevel=5;
         raktiv=false;
@@ -101,48 +101,57 @@ public class HüpfUndRenne extends SPIEL
         }
     }
     public void bildAktualisierungReagieren(double sekunden){
-        //bewegen
-        if(istTasteGedrueckt(39)==true){
-             spielfigur.verschieben(0.07, 0);
-        }
-        if(istTasteGedrueckt(37)==true){
-            spielfigur.verschieben(-0.07, 0);
-        }
-        //sterben
-        for(int i=0;i<rechteck2.length;i++){
-            if(spielfigur.beruehrt(rechteck2[i])){
-            sterben();
-        }
-        }
-        //gewinnen
-        if(spielfigur.beruehrt(gewinn)){
-            gewinnen();
-        }
         //maus
         if ( maus ) 
         {
             registriereMausKlickReagierbar( this );
         }
-        //2.level
-        if(level==2){
-            if(spielfigur.beruehrt(rechteck[1])){
-                rechteck[3].macheDynamisch();
-                raktiv=true;
+        
+        if(level>0){
+            //bewegen
+            if(istTasteGedrueckt(39)==true){
+                 spielfigur.verschieben(0.07, 0);
             }
-            if(rechteck[3].beruehrt(rechteck[1])){
-                rechteck[3].machePassiv();
-                raktiv=false;
+            if(istTasteGedrueckt(37)==true){
+                spielfigur.verschieben(-0.07, 0);
             }
-            //zerquetschen
-            if(raktiv &&spielfigur.stehtAuf(rechteck[3])){
+            //sterben
+            for(int i=0;i<rechteck2.length;i++){
+                if(spielfigur.beruehrt(rechteck2[i])){
                 sterben();
-                rechteck[3].machePassiv();
-                raktiv=false;
+            }
+            }
+            //gewinnen
+            if(spielfigur.beruehrt(gewinn)){
+                gewinnen();
+            }
+        
+            //2.level
+            if(level==2){
+                if(spielfigur.beruehrt(rechteck[1])){
+                    rechteck[3].macheDynamisch();
+                    raktiv=true;
+                }
+                if(rechteck[3].beruehrt(rechteck[1])){
+                    rechteck[3].machePassiv();
+                    raktiv=false;
+                }
+                //zerquetschen
+                if(raktiv &&spielfigur.stehtAuf(rechteck[3])){
+                    sterben();
+                    rechteck[3].machePassiv();
+                    raktiv=false;
+                }
+            }
+            for(int i=0;i<info.length;i++){
+                if(info[i]!=null &&spielfigur.beruehrt(info[i].figur)){
+                    info[i].textAnzeigen();
+                }
+                else{
+                    info[i].textVerbergen();
+                }
             }
         }
-        // if(spielfigur.beruehrt(hintergrundbild)){
-          //  System.out.print(true);
-        //}
     }
     public void tasteReagieren(int taste){
         //springen
@@ -156,7 +165,7 @@ public class HüpfUndRenne extends SPIEL
             break;
             case 40: spielfigur.skaliere(0.5);
             break;
-            //spielfigur.anzahlY=1;
+            
         }
         
         }
@@ -288,6 +297,10 @@ public class HüpfUndRenne extends SPIEL
         //rahmen(10-20)
         rechteck2[10].setzeGroesse(200,0.1);
         rechteck2[10].setzeMittelpunkt(0, -20);
+        
+        //infos
+        info[0].setzeMittelpunkt(0, -6);
+        info[0].setzeInhalt("rechts");
     }
     
     public void level2(){
