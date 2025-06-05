@@ -183,11 +183,8 @@ public class HüpfUndRenne extends SPIEL
         
         }
     
-    //sterben-> noch verschönern
-    public void sterben(){
-        maus=true;
-        
-        //aufräumen
+    //aufräumen
+    public void aufraeumen(){
         spielfigur.machePassiv();
         spielfigur.setzeMittelpunkt(-100, 0);
         for(int i=0;i<rechteck.length;i++){
@@ -196,8 +193,15 @@ public class HüpfUndRenne extends SPIEL
         for(int i=0;i<rechteck2.length;i++){
             rechteck2[i].setzeMittelpunkt(0, 100);
         }
+        for(int i=0;i<info.length;i++){
+            info[i].setzeMittelpunkt(0, 100);
+        }
         gewinn.setzeMittelpunkt(0, 100);
-        
+    }
+    //sterben-> noch verschönern
+    public void sterben(){
+        maus=true;
+        aufraeumen();
         
         knopf[0].setzeMittelpunkt(0, 0);
         setzeKamerafokus(knopf[0].rechteck);
@@ -214,15 +218,9 @@ public class HüpfUndRenne extends SPIEL
     //level
     public void start(){
         maus=true;
-        spielfigur.machePassiv();
-        spielfigur.setzeMittelpunkt(-100, 0);
+        aufraeumen();
         setzeKamerafokus(knopf[3].rechteck);
-        //aufräumen
-        for(int i=0; i<rechteck.length;i++){
-            rechteck[i].setzeMittelpunkt(0, 100);
-            rechteck2[i].setzeMittelpunkt(0, 100);
-        }
-        gewinn.setzeMittelpunkt(0, 100);
+        
         //neu
         for(int i=1; i<anzahlLevel+1; i++){
             knopf[i].setzeAlles(i, 5*i-15, 0);
@@ -253,7 +251,7 @@ public class HüpfUndRenne extends SPIEL
     }
     public void level1(){
         
-        spielfigur.setzeMittelpunkt(0, 0);
+        spielfigur.setzeMittelpunkt(-2, 0);
         gewinn.setzeGroesse(1, 1);
         gewinn.setzeMittelpunkt(14.5, 11);
         
@@ -298,9 +296,12 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[10].setzeGroesse(200,0.1);
         rechteck2[10].setzeMittelpunkt(0, -20);
         
-        //infos
-        info[0].setzeMittelpunkt(0, -6);
-        info[0].setzeInhalt("rechts");
+        //info laufen
+        info[0].setzeMittelpunkt(-2, -6);
+        info[0].setzeInhalt("Nutze die Pfeiltasten um zu laufen");
+        //info springen
+        info[1].setzeMittelpunkt(2, -6);
+        info[1].setzeInhalt("Mit dem Pfeil nach oben kannst du springen");
     }
     
     public void level2(){
