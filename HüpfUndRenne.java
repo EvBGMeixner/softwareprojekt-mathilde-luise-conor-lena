@@ -50,11 +50,13 @@ public class HüpfUndRenne extends SPIEL
         for(int i=0;i<rechteck.length;i++){
         rechteck[i]= new RECHTECK(1, 1);
         rechteck[i].setzeMittelpunkt(0, 100);
+        rechteck[i].setzeTransparenz(0.5);
         }
         for(int i=0;i<rechteck2.length;i++){
         rechteck2[i]=new RECHTECK(1, 1);
         rechteck2[i].setzeMittelpunkt(0, 100);
         rechteck2[i].setzeFarbe("Rot");
+        rechteck2[i].setzeTransparenz(0.5);
         }
         for(int i=0;i<knopf.length;i++){
         knopf[i]= new KNOPF(5, 2, "a");
@@ -297,11 +299,17 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[10].setzeMittelpunkt(0, -20);
         
         //info laufen
-        info[0].setzeMittelpunkt(-2, -6);
         info[0].setzeInhalt("Nutze die Pfeiltasten um zu laufen");
+        info[0].setzeMittelpunkt(-2, -6);
         //info springen
-        info[1].setzeMittelpunkt(2, -6);
         info[1].setzeInhalt("Mit dem Pfeil nach oben kannst du springen");
+        info[1].setzeMittelpunkt(2, -6);
+        //info ducken
+        info[2].setzeInhalt("ducken");
+        info[2].setzeMittelpunkt(11, 5);
+        //info gewinn
+        info[3].setzeInhalt("gewinn");
+        info[3].setzeMittelpunkt(20, 5);
     }
     
     public void level2(){
