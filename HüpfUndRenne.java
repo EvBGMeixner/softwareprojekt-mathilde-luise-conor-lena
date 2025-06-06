@@ -324,8 +324,8 @@ public class HüpfUndRenne extends SPIEL
         rechteck[3].setzeGroesse(8, 0.5);
         rechteck[3].setzeMittelpunkt(18, 0.5);
         //hinderniss
-        rechteck[4].setzeGroesse(9, 7);
-        rechteck[4].setzeMittelpunkt(30, -5);
+        rechteck[4].setzeGroesse(9, 6.5);
+        rechteck[4].setzeMittelpunkt(30, -4);
          
     
         
