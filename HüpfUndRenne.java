@@ -202,10 +202,10 @@ public class HüpfUndRenne extends SPIEL
     public void sterben(){
         maus=true;
         aufraeumen();
-        
+        knopf[0].setzeInhalt("Neustart");
         knopf[0].setzeMittelpunkt(0, 0);
         setzeKamerafokus(knopf[0].rechteck);
-        knopf[0].setzeInhalt("Neustart");
+        
     }
     //gewinnen
     public void gewinnen(){
