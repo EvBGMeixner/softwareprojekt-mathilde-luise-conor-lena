@@ -22,7 +22,7 @@ public class INFO
     }
     public void setzeMittelpunkt(double x, double y){
         figur.setzeMittelpunkt(x, y);
-        text.setzeMittelpunkt(x-3, y+2);
+        text.setzeMittelpunkt(x, y+2);
     }
     public void setzeInhalt(String inhalt){
         text.setzeInhalt(inhalt);
