@@ -13,12 +13,12 @@ public class KNOPF
     public KNOPF(double x, double y, String inhalt)
     {
         
-        rechteck = new RECHTECK(5,2);
+        rechteck = new RECHTECK(8,3);
         rechteck.setzeMittelpunkt(x, y);
         text = new TEXT(x,y,1,inhalt);
         
     }
-    public void setzeMittelpunkt(int x, int y){
+    public void setzeMittelpunkt(double x, double y){
         rechteck.setzeMittelpunkt(x, y);
         text.setzeMittelpunkt(x, y);
     }
@@ -37,11 +37,11 @@ public class KNOPF
     public void setzeInhalt(String x){
         text.setzeInhalt(x);
     }
-    public void setzeAlles(int i, int x, int y){
+    public void setzeAlles(int i, double x, double y){
         text.setzeInhalt(i);
         setzeMittelpunkt(x, y);
     }
-    public void setzeAlles(String i, int x, int y){
+    public void setzeAlles(String i, double x, double y){
         text.setzeInhalt(i);
         setzeMittelpunkt(x, y);
     }
@@ -53,5 +53,9 @@ public class KNOPF
         else{
             return false;
         }
+    }
+    public void setzeSichtbar(boolean x){
+        rechteck.setzeSichtbar(x);
+        text.setzeSichtbar(x);
     }
 }

@@ -73,16 +73,18 @@ public class HüpfUndRenne extends SPIEL
         level=0;
         level2=4;//eig 1 aber besser zum level ausprobieren
         variante=1;
-        anzahlLevel=5;
+        anzahlLevel=4;
         raktiv=false;
+        setzeHintergrundgrafik("extensions2/levelneu");
         start();
-        //setzeHintergrundgrafik("extensions2/Bild");
+        hintergrundbild.skaliere(0.73);
+        hintergrundbild.setzeMittelpunkt(0,-0.5);
         
         bildAktualisierungReagieren(0.02);
         
         setzeSchwerkraft(15);
         
-        zeigeKoordinatensystem(true);   
+        //zeigeKoordinatensystem(true);   
     }
     
     
@@ -133,6 +135,7 @@ public class HüpfUndRenne extends SPIEL
                 if(spielfigur.beruehrt(rechteck[1])){
                     rechteck[3].macheDynamisch();
                     raktiv=true;
+                    rechteck[3].setzeSichtbar(true);
                 }
                 if(rechteck[3].beruehrt(rechteck[1])){
                     rechteck[3].machePassiv();
@@ -221,11 +224,13 @@ public class HüpfUndRenne extends SPIEL
     public void start(){
         maus=true;
         aufraeumen();
-        setzeKamerafokus(knopf[3].rechteck);
+        setzeKamerafokus(knopf[2].rechteck);
+        hintergrundbild.setzeSichtbar(true);
         
         //neu
         for(int i=1; i<anzahlLevel+1; i++){
-            knopf[i].setzeAlles(i, 5*i-15, 0);
+            knopf[i].setzeAlles(i, 0, -3.7*i+7.85);
+            knopf[i].setzeSichtbar(false);
         }
         for(int i=level2+1;i<6;i++){
             knopf[i].setzeTransparenz(0.5);
@@ -235,6 +240,7 @@ public class HüpfUndRenne extends SPIEL
         }
     }
     public void level(){
+        hintergrundbild.setzeSichtbar(false);
         maus = false;
         for(int i=1; i<knopf.length;i++){
             knopf[i].setzeMittelpunkt(0, 100);
@@ -325,12 +331,14 @@ public class HüpfUndRenne extends SPIEL
         //sensor
         rechteck[1].setzeGroesse(1, 1);
         rechteck[1].setzeMittelpunkt(15.5, -7);
+        rechteck[1].setzeSichtbar(false);
         //decke
         rechteck[2].setzeGroesse(20, 10);
         rechteck[2].setzeMittelpunkt(15, 5);
         //fallen
         rechteck[3].setzeGroesse(8, 0.5);
         rechteck[3].setzeMittelpunkt(18, 0.5);
+        rechteck[3].setzeSichtbar(false);
         //hinderniss
         rechteck[4].setzeGroesse(9, 6.5);
         rechteck[4].setzeMittelpunkt(30, -4);
