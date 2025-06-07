@@ -15,6 +15,7 @@ public class HüpfUndRenne extends SPIEL
     RECHTECK[] rechteck;
     RECHTECK[] rechteck2;//bei Berührung tot
     KNOPF[] knopf;
+    FIGUR[] figur;
     
     INFO[] info;
     
@@ -47,6 +48,7 @@ public class HüpfUndRenne extends SPIEL
         knopf= new KNOPF[10];
         info=new INFO[10];
         text = new TEXT[10];
+        figur=new FIGUR[4];
         for(int i=0;i<rechteck.length;i++){
         rechteck[i]= new RECHTECK(1, 1);
         rechteck[i].setzeMittelpunkt(0, 100);
@@ -69,9 +71,13 @@ public class HüpfUndRenne extends SPIEL
         for(int i=0;i<info.length;i++){
         info[i]= new INFO(0,100,"a");
         }
-        ;
+        for(int i=0;i<figur.length;i++){
+        figur[i]= new FIGUR("schloss","extensions2/schloss.png",1,1);
+        figur[i].skaliere(0.1);
+        figur[i].setzeMittelpunkt(2.9, -3.7*i+4.15);
+        }
         level=0;
-        level2=4;//eig 1 aber besser zum level ausprobieren
+        level2=1;//eig 1 aber besser zum level ausprobieren
         variante=1;
         anzahlLevel=4;
         raktiv=false;
@@ -98,7 +104,7 @@ public class HüpfUndRenne extends SPIEL
             knopf[0].setzeMittelpunkt(0, 100);
         }
         for(int i=1;i<anzahlLevel+1;i++){
-            if(knopf[i].klick(x,y)==true&&knopf[i].nenneTransparenz()==0){
+            if(knopf[i].klick(x,y)==true&&i<=level2){
                     level=i;
                     level();
                 }
@@ -232,15 +238,19 @@ public class HüpfUndRenne extends SPIEL
             knopf[i].setzeAlles(i, 0, -3.7*i+7.85);
             knopf[i].setzeSichtbar(false);
         }
-        for(int i=level2+1;i<6;i++){
-            knopf[i].setzeTransparenz(0.5);
+        for(int i=figur.length-1;i>=level2;i--){
+            figur[i].setzeSichtbar(true);
         }
-        for(int i=level2;i>0;i--){
-            knopf[i].setzeTransparenz(0);
+        for(int i=0;i<level2;i++){
+            figur[i].setzeSichtbar(false);
         }
+        
     }
     public void level(){
         hintergrundbild.setzeSichtbar(false);
+        for(int i=0; i<figur.length;i++){
+            figur[i].setzeSichtbar(false);
+        }
         maus = false;
         for(int i=1; i<knopf.length;i++){
             knopf[i].setzeMittelpunkt(0, 100);
