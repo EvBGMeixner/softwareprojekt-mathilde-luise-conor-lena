@@ -130,6 +130,7 @@ public class HüpfUndRenne extends SPIEL
             if(istTasteGedrueckt(37)==true){
                 spielfigur.verschieben(-0.07, 0);
             }
+            
             //sterben
             for(int i=0;i<rechteck2.length;i++){
                 if(spielfigur.beruehrt(rechteck2[i])){
@@ -383,11 +384,15 @@ public class HüpfUndRenne extends SPIEL
         spielfigur.setzeMittelpunkt(0, -5);
         
         //boden
-        rechteck[0].setzeGroesse(50, 1);
-        rechteck[0].setzeMittelpunkt(20, -7);
+        rechteck[0].setzeGroesse(26, 1);
+        rechteck[0].setzeMittelpunkt(8, -7);
         //ducken
         rechteck[1].setzeGroesse(10,1);
         rechteck[1].setzeMittelpunkt(15, -4.5);
+        //aufzug
+        rechteck[2].setzeGroesse(5,1);
+        rechteck[2].setzeMittelpunkt(27, 10);
+        rechteck[2].animiereGerade(6, 27, -7, true);
         
     
         
@@ -395,7 +400,7 @@ public class HüpfUndRenne extends SPIEL
         //rote
         rechteck2[1].setzeGroesse(1, 5);
         rechteck2[1].setzeMittelpunkt(-4.5, -4);
-        //rechteck2[1].animiereGerade(8.5, 30, -4, false);
+        rechteck2[1].animiereGerade(8.7, 30, -4, false);
         
         rechteck2[2].setzeGroesse(0.3, 0.1);
         rechteck2[2].setzeMittelpunkt(11, -6.5);
