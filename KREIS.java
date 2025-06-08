@@ -77,6 +77,7 @@ extends Kreis
         this.M_x = 0;
         this.M_y = 0;
         super.setzeMittelpunkt( this.M_x , this.M_y );
+        machePassiv();
     }
     
     

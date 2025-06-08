@@ -21,7 +21,7 @@ public class HüpfUndRenne extends SPIEL
     
     TEXT[] text; 
     
-    KREIS[] kreise;
+    KREIS[] kreis;
     /**
      * Konstruktor für Objekte der Klasse HüpfUndRenne
      */
@@ -44,7 +44,7 @@ public class HüpfUndRenne extends SPIEL
         
         rechteck=new RECHTECK[10];
         rechteck2=new RECHTECK[20];
-        kreise = new KREIS[10];
+        kreis = new KREIS[10];
         knopf= new KNOPF[10];
         info=new INFO[10];
         text = new TEXT[10];
@@ -59,6 +59,11 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[i].setzeMittelpunkt(0, 100);
         rechteck2[i].setzeFarbe("Rot");
         rechteck2[i].setzeTransparenz(0.5);
+        }
+        for(int i=0;i<kreis.length;i++){
+        kreis[i]= new KREIS(1);
+        kreis[i].setzeMittelpunkt(0, 100);
+        kreis[i].setzeTransparenz(0.5);
         }
         for(int i=0;i<knopf.length;i++){
         knopf[i]= new KNOPF(5, 2, "a");
@@ -77,7 +82,7 @@ public class HüpfUndRenne extends SPIEL
         figur[i].setzeMittelpunkt(2.9, -3.7*i+4.15);
         }
         level=0;
-        level2=1;//eig 1 aber besser zum level ausprobieren
+        level2=4;//eig 1 aber besser zum level ausprobieren
         variante=1;
         anzahlLevel=4;
         raktiv=false;
@@ -90,7 +95,7 @@ public class HüpfUndRenne extends SPIEL
         
         setzeSchwerkraft(15);
         
-        //zeigeKoordinatensystem(true);   
+        zeigeKoordinatensystem(true);   
     }
     
     
@@ -162,6 +167,7 @@ public class HüpfUndRenne extends SPIEL
                     info[i].textVerbergen();
                 }
             }
+            
         }
     }
     public void tasteReagieren(int taste){
@@ -264,7 +270,7 @@ public class HüpfUndRenne extends SPIEL
             level2();
         }
         if(level==3){
-            level1();
+            level3();
         }
     }
     public void level1(){
@@ -331,8 +337,8 @@ public class HüpfUndRenne extends SPIEL
     public void level2(){
         level=2;
         //rahmen(10-20)
-        rechteck2[10].setzeGroesse(200,0.1);
-        rechteck2[10].setzeMittelpunkt(0, -20);
+        rechteck2[0].setzeGroesse(200,0.1);
+        rechteck2[0].setzeMittelpunkt(0, -20);
         
         spielfigur.setzeMittelpunkt(0, 0);
         //boden
@@ -351,7 +357,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck[3].setzeSichtbar(false);
         //hinderniss
         rechteck[4].setzeGroesse(9, 5.75);
-        rechteck[4].setzeMittelpunkt(30, -3.625);
+        rechteck[4].setzeMittelpunkt(30.1, -3.625);
         //2. etage
         rechteck[5].setzeGroesse(1, 0.5);
         rechteck[5].setzeMittelpunkt(0, 10);
@@ -367,13 +373,48 @@ public class HüpfUndRenne extends SPIEL
         
         
         //hindernisse(0-9)
-        //rechteck2[0].setzeGroesse(5, 0.4);
-        //rechteck2[0].setzeMittelpunkt(1, -6.25);
-        //rahmen(10-20)
-        //rechteck2[10].setzeGroesse(70,0.1);
-        //rechteck2[10].setzeMittelpunkt(0, -20);
-    }
+        rechteck2[1].setzeGroesse(0.1, 9.6);
+        rechteck2[1].setzeMittelpunkt(25.05,5.2 );
+        
+        
     
+    }
+    public void level3(){
+        spielfigur.setzeMittelpunkt(0, -5);
+        
+        //boden
+        rechteck[0].setzeGroesse(50, 1);
+        rechteck[0].setzeMittelpunkt(20, -7);
+        //ducken
+        rechteck[1].setzeGroesse(10,1);
+        rechteck[1].setzeMittelpunkt(15, -4.5);
+        
+    
+        
+        
+        //rote
+        rechteck2[1].setzeGroesse(1, 5);
+        rechteck2[1].setzeMittelpunkt(-4.5, -4);
+        //rechteck2[1].animiereGerade(8.5, 30, -4, false);
+        
+        rechteck2[2].setzeGroesse(0.3, 0.1);
+        rechteck2[2].setzeMittelpunkt(11, -6.5);
+        rechteck2[3].setzeGroesse(0.3, 0.1);
+        rechteck2[3].setzeMittelpunkt(13, -6.5);
+        rechteck2[4].setzeGroesse(0.3, 0.1);
+        rechteck2[4].setzeMittelpunkt(15, -6.5);
+        rechteck2[5].setzeGroesse(0.3, 0.1);
+        rechteck2[5].setzeMittelpunkt(17, -6.5);
+        rechteck2[6].setzeGroesse(0.3, 0.1);
+        rechteck2[6].setzeMittelpunkt(19, -6.5);
+        
+        //kreise
+        kreis[0].setzeMittelpunkt(2, -5.5);
+        kreis[0].setzeRadius(0.5);
+        
+        kreis[1].setzeMittelpunkt(7, -5.5);
+        kreis[1].setzeRadius(0.5);
+    }
     
     
     
