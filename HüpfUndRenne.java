@@ -239,7 +239,7 @@ public class HüpfUndRenne extends SPIEL
             spielfigur.skaliere(2);
             klein=false;
         }
-            
+        spielfigur.spiegelnHorizontal(false);    
     }
     //gewinnen
     public void gewinnen(){
