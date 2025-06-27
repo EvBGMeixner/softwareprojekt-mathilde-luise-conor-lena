@@ -46,7 +46,7 @@ public class HüpfUndRenne extends SPIEL
         
         rechteck=new RECHTECK[10];
         rechteck2=new RECHTECK[20];
-        kreis = new KREIS[10];
+        kreis = new KREIS[12];
         knopf= new KNOPF[10];
         info=new INFO[10];
         text = new TEXT[10];
@@ -387,9 +387,17 @@ public class HüpfUndRenne extends SPIEL
         rechteck[7].setzeMittelpunkt(-5, 15);
          
          
-    
+        rechteck[8].setzeGroesse(1, 0.5);
+        rechteck[8].setzeMittelpunkt(0,17);
         
+        rechteck[9].setzeGroesse(20, 0.5);
+        rechteck[9].setzeMittelpunkt(15,17);
         
+        kreis[10].setzeRadius(2.5);
+        kreis[10].setzeMittelpunkt(15,20);
+        
+        kreis[11].setzeRadius(2.5);
+        kreis[11].setzeMittelpunkt(20,20);
         //hindernisse(0-9)
         rechteck2[1].setzeGroesse(0.1, 9.6);
         rechteck2[1].setzeMittelpunkt(25.05,5.2 );
