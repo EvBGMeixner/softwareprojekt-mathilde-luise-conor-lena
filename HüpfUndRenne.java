@@ -423,7 +423,8 @@ public class HüpfUndRenne extends SPIEL
         rechteck[4].setzeGroesse(5,1);
         rechteck[4].setzeMittelpunkt(27, 10);
         rechteck[4].animiereGerade(6, 27, -7, true);
-        
+        rechteck[5].setzeGroesse(10, 1);
+        rechteck[5].setzeMittelpunkt(15, 10);
         
     
         
@@ -443,8 +444,8 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[5].setzeMittelpunkt(17, -6.5);
         rechteck2[6].setzeGroesse(0.3, 0.1);
         rechteck2[6].setzeMittelpunkt(19, -6.5);
-        rechteck2[7].setzeGroesse(10, 0.1);
-        rechteck2[7].setzeMittelpunkt(15, -3.85);
+        //rechteck2[7].setzeGroesse(10, 0.1);
+        //rechteck2[7].setzeMittelpunkt(15, -3.85);
         
         //kreise
         kreis[0].setzeMittelpunkt(2, -5.5);
