@@ -44,7 +44,7 @@ public class HüpfUndRenne extends SPIEL
         
         rechteck=new RECHTECK[10];
         rechteck2=new RECHTECK[20];
-        kreis = new KREIS[10];
+        kreis = new KREIS[12];
         knopf= new KNOPF[10];
         info=new INFO[10];
         text = new TEXT[10];
