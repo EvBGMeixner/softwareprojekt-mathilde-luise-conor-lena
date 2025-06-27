@@ -9,6 +9,8 @@ public class HüpfUndRenne extends SPIEL
     int variante;
     boolean maus;
     boolean raktiv;
+    boolean alive;
+    boolean klein;
     FIGUR spielfigur;
     //RECHTECK spielfigur;
     RECHTECK gewinn;
@@ -160,6 +162,9 @@ public class HüpfUndRenne extends SPIEL
                     raktiv=false;
                 }
             }
+            if(level==3){
+                
+            }
             for(int i=0;i<info.length;i++){
                 if(info[i]!=null &&spielfigur.beruehrt(info[i].figur)){
                     info[i].textAnzeigen();
@@ -173,6 +178,7 @@ public class HüpfUndRenne extends SPIEL
     }
     public void tasteReagieren(int taste){
         //springen
+        if(alive==true){
         switch(taste){
             case 37: spielfigur.setzeZustand("laufen");
             spielfigur.spiegelnHorizontal(true);
@@ -182,13 +188,16 @@ public class HüpfUndRenne extends SPIEL
             case 38: spielfigur.springe(9);
             break;
             case 40: spielfigur.skaliere(0.5);
+            klein=true;
             break;
             
+        }
         }
         
         }
     public void tasteLosgelassenReagieren(int taste){
         //aufrichten
+        if(alive==true){
         switch(taste){
             case 37: spielfigur.setzeZustand("steht");
             spielfigur.spiegelnHorizontal(false);
@@ -196,9 +205,11 @@ public class HüpfUndRenne extends SPIEL
             case 39: spielfigur.setzeZustand("steht");
             break;
             case 40: spielfigur.skaliere(2);
+            klein=false;
             break;
         }
         
+        }
         }
     
     //aufräumen
@@ -218,12 +229,17 @@ public class HüpfUndRenne extends SPIEL
     }
     //sterben-> noch verschönern
     public void sterben(){
+        alive=false;
         maus=true;
         aufraeumen();
         knopf[0].setzeInhalt("Neustart");
         knopf[0].setzeMittelpunkt(0, 0);
         setzeKamerafokus(knopf[0].rechteck);
-        
+        if(klein==true){
+            spielfigur.skaliere(2);
+            klein=false;
+        }
+            
     }
     //gewinnen
     public void gewinnen(){
@@ -254,6 +270,7 @@ public class HüpfUndRenne extends SPIEL
         
     }
     public void level(){
+        alive=true;
         hintergrundbild.setzeSichtbar(false);
         for(int i=0; i<figur.length;i++){
             figur[i].setzeSichtbar(false);
@@ -389,10 +406,16 @@ public class HüpfUndRenne extends SPIEL
         //ducken
         rechteck[1].setzeGroesse(10,1);
         rechteck[1].setzeMittelpunkt(15, -4.5);
+        
         //aufzug
-        rechteck[2].setzeGroesse(5,1);
-        rechteck[2].setzeMittelpunkt(27, 10);
-        rechteck[2].animiereGerade(6, 27, -7, true);
+        rechteck[3].setzeGroesse(5,1);
+        rechteck[3].setzeMittelpunkt(27, 10);
+        rechteck[3].animiereGerade(6, 27, -7, true);
+        rechteck[3].macheKinematisch();
+        rechteck[4].setzeGroesse(5,1);
+        rechteck[4].setzeMittelpunkt(27, 10);
+        rechteck[4].animiereGerade(6, 27, -7, true);
+        
         
     
         
@@ -400,7 +423,7 @@ public class HüpfUndRenne extends SPIEL
         //rote
         rechteck2[1].setzeGroesse(1, 5);
         rechteck2[1].setzeMittelpunkt(-4.5, -4);
-        rechteck2[1].animiereGerade(8.7, 30, -4, false);
+        //rechteck2[1].animiereGerade(8.7, 30, -4, false);
         
         rechteck2[2].setzeGroesse(0.3, 0.1);
         rechteck2[2].setzeMittelpunkt(11, -6.5);
@@ -412,13 +435,15 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[5].setzeMittelpunkt(17, -6.5);
         rechteck2[6].setzeGroesse(0.3, 0.1);
         rechteck2[6].setzeMittelpunkt(19, -6.5);
+        rechteck2[7].setzeGroesse(10, 0.1);
+        rechteck2[7].setzeMittelpunkt(15, -3.85);
         
         //kreise
         kreis[0].setzeMittelpunkt(2, -5.5);
-        kreis[0].setzeRadius(0.5);
+        kreis[0].setzeRadius(0.4);
         
         kreis[1].setzeMittelpunkt(7, -5.5);
-        kreis[1].setzeRadius(0.5);
+        kreis[1].setzeRadius(0.4);
     }
     
     
