@@ -44,7 +44,7 @@ public class HüpfUndRenne extends SPIEL
         //spielfigur.setzeFarbe("grün");
         gewinn.setzeFarbe("grün");
         
-        rechteck=new RECHTECK[10];
+        rechteck=new RECHTECK[20];
         rechteck2=new RECHTECK[20];
         kreis = new KREIS[12];
         knopf= new KNOPF[10];
@@ -163,7 +163,10 @@ public class HüpfUndRenne extends SPIEL
                 }
             }
             if(level==3){
-                
+                if(spielfigur.beruehrt(rechteck[8])){
+                    rechteck[9].animiereGerade(5, -1.5, 15, false);
+                    rechteck[10].animiereGerade(5, -1.5, 15, false);
+                }
             }
             for(int i=0;i<info.length;i++){
                 if(info[i]!=null &&spielfigur.beruehrt(info[i].figur)){
@@ -184,6 +187,7 @@ public class HüpfUndRenne extends SPIEL
             spielfigur.spiegelnHorizontal(true);
             break;
             case 39: spielfigur.setzeZustand("laufen");
+            spielfigur.spiegelnHorizontal(false);
             break;
             case 38: spielfigur.springe(9);
             break;
@@ -200,7 +204,7 @@ public class HüpfUndRenne extends SPIEL
         if(alive==true){
         switch(taste){
             case 37: spielfigur.setzeZustand("steht");
-            spielfigur.spiegelnHorizontal(false);
+            spielfigur.spiegelnHorizontal(true);
             break;
             case 39: spielfigur.setzeZustand("steht");
             break;
@@ -354,7 +358,7 @@ public class HüpfUndRenne extends SPIEL
     
     public void level2(){
         level=2;
-        //rahmen(10-20)
+        //rahmen
         rechteck2[0].setzeGroesse(200,0.1);
         rechteck2[0].setzeMittelpunkt(0, -20);
         
@@ -406,7 +410,11 @@ public class HüpfUndRenne extends SPIEL
     
     }
     public void level3(){
-        spielfigur.setzeMittelpunkt(0, -5);
+        //spielfigur.setzeMittelpunkt(0, -5); anfang, anderes um auszuprobieren
+        spielfigur.setzeMittelpunkt(-11, 11);
+        //rahmen
+        rechteck2[0].setzeGroesse(200,0.1);
+        rechteck2[0].setzeMittelpunkt(0, -20);
         
         //boden
         rechteck[0].setzeGroesse(26, 1);
@@ -423,11 +431,25 @@ public class HüpfUndRenne extends SPIEL
         rechteck[4].setzeGroesse(5,1);
         rechteck[4].setzeMittelpunkt(27, 10);
         rechteck[4].animiereGerade(6, 27, -7, true);
+        //ebene2
         rechteck[5].setzeGroesse(10, 1);
-        rechteck[5].setzeMittelpunkt(15, 10);
-        
-    
-        
+        rechteck[5].setzeMittelpunkt(15, 9);
+        //wand
+        rechteck[6].setzeGroesse(1, 10);
+        rechteck[6].setzeMittelpunkt(10.5, 14.5);
+        //ebene3
+        rechteck[7].setzeGroesse(15, 1);
+        rechteck[7].setzeMittelpunkt(-11, 10);
+        //knopf
+        rechteck[8].setzeGroesse(1, 1);
+        rechteck[8].setzeMittelpunkt(-18, 11);
+        //aufzug2
+        rechteck[9].setzeGroesse(4, 1);
+        rechteck[9].setzeMittelpunkt(-1.5, 5);
+        rechteck[9].macheKinematisch();
+        rechteck[9].setzeSichtbar(false);
+        rechteck[10].setzeGroesse(4, 1);
+        rechteck[10].setzeMittelpunkt(-1.5, 5);
         
         //rote
         rechteck2[1].setzeGroesse(1, 5);
