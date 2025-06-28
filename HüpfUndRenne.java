@@ -212,13 +212,19 @@ public class HüpfUndRenne extends SPIEL
         }
     public void tasteLosgelassenReagieren(int taste){
         //aufrichten
-        if(alive==true&&istTasteGedrueckt(37)==false&&istTasteGedrueckt(39)==false){
+        if(alive==true){
         switch(taste){
-            case 37: spielfigur.setzeZustand("steht");
-            spielfigur.spiegelnHorizontal(true);
+            case 37: 
+            if(istTasteGedrueckt(37)==false&&istTasteGedrueckt(39)==false){
+                spielfigur.setzeZustand("steht");
+                spielfigur.spiegelnHorizontal(true);
+            }
             break;
-            case 39: spielfigur.setzeZustand("steht");
-            spielfigur.spiegelnHorizontal(false);
+            case 39: 
+            if(istTasteGedrueckt(37)==false&&istTasteGedrueckt(39)==false){
+                spielfigur.setzeZustand("steht");
+                spielfigur.spiegelnHorizontal(false);
+            }
             break;
             case 40: spielfigur.skaliere(2);
             klein=false;
