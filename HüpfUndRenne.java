@@ -164,8 +164,19 @@ public class HüpfUndRenne extends SPIEL
             }
             if(level==3){
                 if(spielfigur.beruehrt(rechteck[8])){
-                    rechteck[9].animiereGerade(5, -1.5, 15, false);
-                    rechteck[10].animiereGerade(5, -1.5, 15, false);
+                    rechteck[9].animiereGerade(7, -1.5, 20, false);
+                    rechteck[10].animiereGerade(7, -1.5, 20, false);
+                }
+                if(spielfigur.beruehrt(rechteck[12])){
+                    spielfigur.setzeSichtbar(false);
+                    spielfigur.machePassiv();
+                    spielfigur.animiereGerade(5, 20, spielfigur.nenneMy(), false);
+                    rechteck[13].setzeSichtbar(true);
+                    
+                }
+                if(spielfigur.istSichtbar()==false&&spielfigur.nenneMx()>19){
+                    spielfigur.setzeSichtbar(true);
+                    spielfigur.macheAktiv();
                 }
             }
             for(int i=0;i<info.length;i++){
@@ -201,12 +212,13 @@ public class HüpfUndRenne extends SPIEL
         }
     public void tasteLosgelassenReagieren(int taste){
         //aufrichten
-        if(alive==true){
+        if(alive==true&&istTasteGedrueckt(37)==false&&istTasteGedrueckt(39)==false){
         switch(taste){
             case 37: spielfigur.setzeZustand("steht");
             spielfigur.spiegelnHorizontal(true);
             break;
             case 39: spielfigur.setzeZustand("steht");
+            spielfigur.spiegelnHorizontal(false);
             break;
             case 40: spielfigur.skaliere(2);
             klein=false;
@@ -450,6 +462,15 @@ public class HüpfUndRenne extends SPIEL
         rechteck[9].setzeSichtbar(false);
         rechteck[10].setzeGroesse(4, 1);
         rechteck[10].setzeMittelpunkt(-1.5, 5);
+        //ebene tür
+        rechteck[11].setzeGroesse(5, 1);
+        rechteck[11].setzeMittelpunkt(-7.5, 20);
+        rechteck[12].setzeGroesse(1, 1);
+        rechteck[12].setzeMittelpunkt(-7.5, 21);
+        //ebene4
+        rechteck[13].setzeGroesse(10, 1);
+        rechteck[13].setzeMittelpunkt(24, 20);
+        rechteck[13].setzeSichtbar(false);
         
         //rote
         rechteck2[1].setzeGroesse(1, 5);
