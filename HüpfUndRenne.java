@@ -105,7 +105,7 @@ public class HüpfUndRenne extends SPIEL
         
         setzeSchwerkraft(15);
         
-        zeigeKoordinatensystem(true);   
+        //zeigeKoordinatensystem(true);   
     }
     
     
@@ -441,8 +441,8 @@ public class HüpfUndRenne extends SPIEL
     
     }
     public void level3(){
-        spielfigur.setzeMittelpunkt(0, -5); //anfang, anderes um auszuprobieren
-        //spielfigur.setzeMittelpunkt(25, 22);
+        //spielfigur.setzeMittelpunkt(0, -5); //anfang, anderes um auszuprobieren
+        spielfigur.setzeMittelpunkt(25, 22);
         //rahmen
         rechteck2[0].setzeGroesse(200,0.1);
         rechteck2[0].setzeMittelpunkt(0, -20);
@@ -489,10 +489,10 @@ public class HüpfUndRenne extends SPIEL
         //ebene4
         rechteck[13].setzeGroesse(20, 1);
         rechteck[13].setzeMittelpunkt(29, 20);
-        //rechteck[13].setzeSichtbar(false);
+        rechteck[13].setzeSichtbar(false);
         //hochklettern
         rechteck[14].setzeGroesse(1, 10);
-        rechteck[14].setzeMittelpunkt(34.5, 28);
+        rechteck[14].setzeMittelpunkt(35, 28);
         rechteck[15].setzeGroesse(1, 10);
         rechteck[15].setzeMittelpunkt(38.5, 28);
         
@@ -500,7 +500,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[1].setzeGroesse(1, 5);
         rechteck2[1].setzeMittelpunkt(-4.5, -4);
         rechteck2[1].animiereGerade(8.7, 30, -4, false);
-        
+        //springen geduckt
         rechteck2[2].setzeGroesse(0.3, 0.1);
         rechteck2[2].setzeMittelpunkt(11, -6.5);
         rechteck2[3].setzeGroesse(0.3, 0.1);
@@ -511,9 +511,13 @@ public class HüpfUndRenne extends SPIEL
         rechteck2[5].setzeMittelpunkt(17, -6.5);
         rechteck2[6].setzeGroesse(0.3, 0.1);
         rechteck2[6].setzeMittelpunkt(19, -6.5);
-        //rechteck2[7].setzeGroesse(10, 0.1);
-        //rechteck2[7].setzeMittelpunkt(15, -3.85);
-        
+        rechteck2[7].setzeGroesse(10, 0.1);
+        rechteck2[7].setzeMittelpunkt(15, -3.85);
+        //hocklettern in der mitte
+        rechteck2[8].setzeGroesse(0.1, 10);
+        rechteck2[8].setzeMittelpunkt(34.45, 28);
+        rechteck2[9].setzeGroesse(0.1, 10);
+        rechteck2[9].setzeMittelpunkt(39.05, 28);
         
         
         //kreise
@@ -523,10 +527,10 @@ public class HüpfUndRenne extends SPIEL
         kreis[1].setzeMittelpunkt(7, -5.5);
         kreis[1].setzeRadius(0.4);
         
-        //kreis2[0].setzeRadius(0.4);
-        //kreis2[0].setzeMittelpunkt(35.8, 25);
-        //kreis2[1].setzeRadius(0.4);
-        //kreis2[1].setzeMittelpunkt(35.8, 30);
+        kreis2[0].setzeRadius(0.4);
+        kreis2[0].setzeMittelpunkt(36.3, 24.5);
+        kreis2[1].setzeRadius(0.4);
+        kreis2[1].setzeMittelpunkt(36.3, 30.5);
         kreis2[2].setzeRadius(0.4);
         kreis2[2].setzeMittelpunkt(37.2, 27.5);
     }
