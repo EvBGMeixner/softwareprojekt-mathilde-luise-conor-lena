@@ -15,7 +15,7 @@ public class probe extends SPIEL
         rechteck.setzeMittelpunkt(0, 0);
         //setzeHintergrundgrafik("extensions2/Bild");
         a=new RECHTECK(5,5);
-        a.setzeEbenenposition(-1);
+        a.setzeEbenenposition(-12);
         a.setzeMittelpunkt(0, 0);
     }
     public void a(){
