@@ -9,6 +9,7 @@ public class probe extends SPIEL
 {
     RECHTECK rechteck;
     RECHTECK a;
+    
     public probe()
     {
         rechteck= new RECHTECK(5,5);

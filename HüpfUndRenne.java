@@ -105,7 +105,7 @@ public class HüpfUndRenne extends SPIEL
         
         setzeSchwerkraft(15);
         
-        //zeigeKoordinatensystem(true);   
+        zeigeKoordinatensystem(true);   
     }
     
     
@@ -183,7 +183,7 @@ public class HüpfUndRenne extends SPIEL
                 if(spielfigur.beruehrt(rechteck[12])){
                     spielfigur.setzeSichtbar(false);
                     spielfigur.machePassiv();
-                    spielfigur.animiereGerade(3, 20, spielfigur.nenneMy(), false);
+                    spielfigur.animiereGerade(2, 20, spielfigur.nenneMy(), false);
                     rechteck[13].setzeSichtbar(true);
                     
                 }
@@ -441,8 +441,8 @@ public class HüpfUndRenne extends SPIEL
     
     }
     public void level3(){
-        //spielfigur.setzeMittelpunkt(0, -5); //anfang, anderes um auszuprobieren
-        spielfigur.setzeMittelpunkt(25, 22);
+        spielfigur.setzeMittelpunkt(0, -5); //anfang, anderes um auszuprobieren
+        //spielfigur.setzeMittelpunkt(25, 22);
         //rahmen
         rechteck2[0].setzeGroesse(200,0.1);
         rechteck2[0].setzeMittelpunkt(0, -20);
