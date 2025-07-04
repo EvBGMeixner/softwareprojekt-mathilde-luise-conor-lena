@@ -497,7 +497,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck[15].setzeMittelpunkt(38.5, 28);
         //bewegt nach links
         rechteck[15].setzeGroesse(5, 1);
-        rechteck[15].setzeMittelpunkt(32.5, 28);
+        rechteck[15].setzeMittelpunkt(32.5, 33.5);
         
         //rote
         rechteck2[1].setzeGroesse(1, 5);
