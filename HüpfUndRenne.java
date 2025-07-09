@@ -266,10 +266,17 @@ public class HüpfUndRenne extends SPIEL
     public void sterben(){
         alive=false;
         maus=true;
-        aufraeumen();
+        
+        rechteck2[11].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy());
+        rechteck2[11].setzeGroesse(40, 30);
+        rechteck2[11].setzeTransparenz(1);
+        rechteck2[11].animiereTransparenz(0.5, 0.8);
+        spielfigur.machePassiv();
+        
+        //aufraeumen();
         knopf[0].setzeInhalt("Neustart");
-        knopf[0].setzeMittelpunkt(0, 0);
-        setzeKamerafokus(knopf[0].rechteck);
+        knopf[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()+5);
+        //setzeKamerafokus(knopf[0].rechteck);
         if(klein==true){
             spielfigur.skaliere(2);
             klein=false;
