@@ -52,13 +52,13 @@ public class HüpfUndRenne extends SPIEL
 
         kreis = new KREIS[20];
 
-        kreis = new KREIS[12];
-<<<<<<< HEAD
-        kreis2 = new KREIS[14];
-=======
-        kreis2 = new KREIS[12];
+        kreis = new KREIS[13];
 
->>>>>>> 5ec9e4d7ae153a4c5139682fa7108d595e2410ed
+        kreis2 = new KREIS[14];
+
+        kreis2 = new KREIS[14];
+
+
         knopf= new KNOPF[10];
         info=new INFO[10];
         text = new TEXT[10];
@@ -127,7 +127,7 @@ public class HüpfUndRenne extends SPIEL
     public void klickReagieren(double x, double y) 
     {
         //knopf reagieren
-        if (knopf[0].klick(x,y)==true)
+        if (knopf[0].rechteck.beinhaltetPunkt(x, y))
         {
             variante=2;
             rechteck2[11].setzeMittelpunkt(0, 100);
@@ -137,7 +137,7 @@ public class HüpfUndRenne extends SPIEL
             rechteck2[11].setzeTransparenz(1);
         }
         for(int i=1;i<anzahlLevel+1;i++){
-            if(knopf[i].klick(x,y)==true&&i<=level2){
+            if(knopf[i].rechteck.beinhaltetPunkt(x, y)&&i<=level2){
                 level=i;
                 level();
             }
@@ -226,7 +226,7 @@ public class HüpfUndRenne extends SPIEL
             }
             if(rechteck2[11].nenneTransparenz()<=0.7&&knopftot==false){
                 knopftot=true;
-                knopf[0].setzeInhalt("Neustart");
+                knopf[0].text.setzeInhalt("Neustart");
                 knopf[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()-5);
                 knopf[0].rechteck.setzeTransparenz(0.5);
             }
@@ -291,6 +291,12 @@ public class HüpfUndRenne extends SPIEL
         }
         for(int i=0;i<info.length;i++){
             info[i].setzeMittelpunkt(0, 100);
+        }
+        for(int i=0;i<kreis.length;i++){
+            kreis[i].setzeMittelpunkt(0, 100);
+        }
+        for(int i=0;i<kreis2.length;i++){
+            kreis2[i].setzeMittelpunkt(0, 100);
         }
         gewinn.setzeMittelpunkt(0, 100);
     }
@@ -441,7 +447,8 @@ public class HüpfUndRenne extends SPIEL
         info[3].setzeInhalt("gewinn");
         info[3].setzeMittelpunkt(20, 5);
     }
-
+    
+    
     public void level2(){
         level=2;
         //rahmen
