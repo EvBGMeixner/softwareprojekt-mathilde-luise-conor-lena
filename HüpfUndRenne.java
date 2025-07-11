@@ -46,7 +46,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck=new RECHTECK[20];
         rechteck2=new RECHTECK[20];
         kreis = new KREIS[12];
-        kreis2 = new KREIS[12];
+        kreis2 = new KREIS[14];
         knopf= new KNOPF[10];
         info=new INFO[10];
         text = new TEXT[10];
@@ -343,6 +343,9 @@ public class HüpfUndRenne extends SPIEL
         if(level==3){
             level3();
         }
+        if(level==4){
+            level4();
+        }
     }
 
     public void level1(){
@@ -554,7 +557,93 @@ public class HüpfUndRenne extends SPIEL
         kreis2[2].setzeRadius(0.4);
         kreis2[2].setzeMittelpunkt(37.2, 27.5);
     }
+    public void level4() {
+        spielfigur.setzeMittelpunkt(0, -5);
+        
+        //rahmen
+        rechteck2[0].setzeGroesse(200,0.1);
+        rechteck2[0].setzeMittelpunkt(0, -20);
 
+        //boden
+        
+        rechteck[0].setzeGroesse(26, 1);
+        rechteck[0].setzeMittelpunkt(8, -7);
+        //ducken
+        rechteck2[3].setzeGroesse(10,1);
+        rechteck2[3].setzeMittelpunkt(15, -4.5);
+        
+        //aufzug
+        rechteck[3].setzeGroesse(5,1);
+        rechteck[3].setzeMittelpunkt(32, 20);
+        rechteck[3].animiereGerade(3, 32, -7, true);
+        rechteck[3].macheKinematisch();
+        rechteck[3].setzeGroesse(5,1);
+        rechteck[3].setzeMittelpunkt(32, 12);
+        rechteck[3].animiereGerade(3, 32, -20, true);
+        
+        //rote
+        rechteck2[1].setzeGroesse(1, 5);
+        rechteck2[1].setzeMittelpunkt(-4.5, -4);
+        rechteck2[1].animiereGerade(11, 40, -4, false);
+        
+        //killerdecke
+        rechteck2[6].setzeGroesse(5,1);
+        rechteck2[6].setzeMittelpunkt(20, 7);
+        rechteck2[6].animiereGerade(9, 20, -7, true);
+        
+        //Stepstone
+        rechteck[5].setzeGroesse(3, 1);
+        rechteck[5].setzeMittelpunkt(27, -7);
+        
+        //killerdeckesteht
+        rechteck2[7].setzeGroesse(5,1);
+        rechteck2[7].setzeMittelpunkt(32, 10);
+        
+        //plattform
+        rechteck[7].setzeGroesse(5,1);
+        rechteck[7].setzeMittelpunkt(25,5);
+        
+        //wand
+        rechteck[6].setzeGroesse(1, 10);
+        rechteck[6].setzeMittelpunkt(27, 5);
+        
+        //killerdecke2
+        rechteck2[8].setzeGroesse(5,1);
+        rechteck2[8].setzeMittelpunkt(30, 15);
+        
+        //rote
+        rechteck2[9].setzeGroesse(1, 10);
+        rechteck2[9].setzeMittelpunkt(50, 10);
+        rechteck2[9].animiereGerade(15, 0, 10, true);
+        
+        //plattform2
+        rechteck[8].setzeGroesse(4,1);
+        rechteck[8].setzeMittelpunkt(15,5);
+        
+        //boden
+        rechteck[10].setzeGroesse(30, 1);
+        rechteck[10].setzeMittelpunkt(0, 5);
+        
+        
+        //fireball1
+        kreis2[11].setzeRadius(0.4);
+        kreis2[11].setzeMittelpunkt(0, 5);
+        kreis2[11].animiereGerade(60, 20, 5, false);
+        
+         //fireball2
+       kreis2[12].setzeRadius(0.4);
+        kreis2[12].setzeMittelpunkt(0, 7);
+        kreis2[12].animiereGerade(50, 20, 7, false);
+        
+        
+         //fireball3
+        kreis2[13].setzeRadius(0.4);
+        kreis2[13].setzeMittelpunkt(0, 6);
+        kreis2[13].animiereGerade(30, 20, 6, false);
+        
+        
+        
+    }
     
     
     
