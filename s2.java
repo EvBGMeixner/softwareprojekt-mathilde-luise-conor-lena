@@ -1,5 +1,5 @@
 
-public class HüpfUndRenne extends SPIEL
+public class s2 extends SPIEL
 {
 
     int level;
@@ -13,6 +13,7 @@ public class HüpfUndRenne extends SPIEL
     boolean knopftot;
     boolean beruehrt;
     FIGUR spielfigur;
+    FIGUR spielfigur2;
     TEXT textt;
 
     RECHTECK gewinn;
@@ -28,9 +29,9 @@ public class HüpfUndRenne extends SPIEL
     KREIS[] kreis;
     KREIS[] kreis2;
     /**
-     * Konstruktor für Objekte der Klasse HüpfUndRenne
+     * Konstruktor für Objekte der Klasse CopyOfHüpfUndRenne
      */
-    public HüpfUndRenne()
+    public s2()
     {
         maus=true;
 
@@ -38,15 +39,16 @@ public class HüpfUndRenne extends SPIEL
         spielfigur.skaliere(0.1);
         spielfigur.fuegeZustandVonSpritesheetHinzu("laufen", "extensions2/bildlaufen.png", 1, 1);
         spielfigur.fuegeZustandVonSpritesheetHinzu("duckt", "extensions2/bildduckt.png", 1, 1);
+        spielfigur2 = new FIGUR("steht","extensions2/bildsteht.png", 1, 1);
+        spielfigur2.skaliere(0.1);
+        spielfigur2.fuegeZustandVonSpritesheetHinzu("laufen", "extensions2/bildlaufen.png", 1, 1);
+        spielfigur2.fuegeZustandVonSpritesheetHinzu("duckt", "extensions2/bildduckt.png", 1, 1);
 
         gewinn=new RECHTECK(1,1);
         gewinn.setzeMittelpunkt(-100, 0);
-        //spielfigur=new RECHTECK(0.6,0.8);
-
-        //spielfigur.setzeFarbe("grün");
+        
         gewinn.setzeFarbe("grün");
 
- 
         rechteck=new RECHTECK[20];
         rechteck2=new RECHTECK[20];
 
@@ -58,13 +60,11 @@ public class HüpfUndRenne extends SPIEL
 
         kreis2 = new KREIS[14];
 
-
         knopf= new KNOPF[10];
         info=new INFO[10];
         text = new TEXT[10];
         figur=new FIGUR[4];
 
-        
         for(int i=0;i<text.length;i++){
             text[i]= new TEXT(0, 100, 1, "a");
         }
@@ -160,6 +160,12 @@ public class HüpfUndRenne extends SPIEL
                 if(istTasteGedrueckt(37)==true){
                     spielfigur.verschieben(-0.07, 0);
                 }
+                if(istTasteGedrueckt(68)==true){
+                    spielfigur2.verschieben(0.07, 0);
+                }
+                if(istTasteGedrueckt(65)==true){
+                    spielfigur2.verschieben(-0.07, 0);
+                }
             }
             //sterben
             for(int i=0;i<rechteck2.length;i++){
@@ -249,6 +255,17 @@ public class HüpfUndRenne extends SPIEL
                 case 40: spielfigur.skaliere(0.5);
                     klein=true;
                     break;
+                case 65: spielfigur2.setzeZustand("laufen");
+                    spielfigur2.spiegelnHorizontal(true);
+                    break;
+                case 68: spielfigur2.setzeZustand("laufen");
+                    spielfigur2.spiegelnHorizontal(false);
+                    break;
+                case 87: spielfigur2.springe(9);
+                    break;
+                case 83: spielfigur2.skaliere(0.5);
+                    klein=true;
+                    break;
 
             }
         }
@@ -274,6 +291,21 @@ public class HüpfUndRenne extends SPIEL
                 case 40: spielfigur.skaliere(2);
                     klein=false;
                     break;
+                case 65: 
+                    if(istTasteGedrueckt(37)==false&&istTasteGedrueckt(39)==false){
+                        spielfigur2.setzeZustand("steht");
+                        spielfigur2.spiegelnHorizontal(true);
+                    }
+                    break;
+                case 68: 
+                    if(istTasteGedrueckt(37)==false&&istTasteGedrueckt(39)==false){
+                        spielfigur2.setzeZustand("steht");
+                        spielfigur2.spiegelnHorizontal(false);
+                    }
+                    break;
+                case 83: spielfigur2.skaliere(2);
+                    klein=false;
+                    break;
             }
 
         }
@@ -283,6 +315,8 @@ public class HüpfUndRenne extends SPIEL
     public void aufraeumen(){
         spielfigur.machePassiv();
         spielfigur.setzeMittelpunkt(-100, 0);
+        spielfigur2.machePassiv();
+        spielfigur2.setzeMittelpunkt(-100, 0);
         for(int i=0;i<rechteck.length;i++){
             rechteck[i].setzeMittelpunkt(0, 100);
         }
@@ -324,7 +358,7 @@ public class HüpfUndRenne extends SPIEL
             //knopf[0].setzeInhalt("Neustart");
             //knopf[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()-5);
             //knopf[0].rechteck.setzeTransparenz(0.5);
-            //setzeKamerafokus(knopf[0].rechteck);
+            
             if(klein==true){
                 spielfigur.skaliere(2);
                 klein=false;
@@ -344,7 +378,7 @@ public class HüpfUndRenne extends SPIEL
     public void start(){
         maus=true;
         aufraeumen();
-        setzeKamerafokus(knopf[2].rechteck);
+        
         hintergrundbild.setzeSichtbar(true);
 
         //neu
@@ -358,7 +392,8 @@ public class HüpfUndRenne extends SPIEL
         for(int i=0;i<level2;i++){
             figur[i].setzeSichtbar(false);
         }
-
+        
+        
     }
 
     public void level(){
@@ -372,7 +407,11 @@ public class HüpfUndRenne extends SPIEL
             knopf[i].setzeMittelpunkt(0, 100);
         }
         spielfigur.macheAktiv();
-        setzeKamerafokus(spielfigur);
+        spielfigur2.macheAktiv();
+        //boden
+        rechteck[0].setzeGroesse(30, 1);
+        rechteck[0].setzeMittelpunkt(0, -10);
+
         if(level==1){
             level1();
         }
@@ -388,318 +427,21 @@ public class HüpfUndRenne extends SPIEL
     }
 
     public void level1(){
-
-        spielfigur.setzeMittelpunkt(-2, 0);
-        gewinn.setzeGroesse(1, 1);
-        gewinn.setzeMittelpunkt(14.5, 11);
-
-        //boden
-        rechteck[0].setzeGroesse(50, 1);
-        rechteck[0].setzeMittelpunkt(20, -7);
-        //1.stufe
-        rechteck[1].setzeGroesse(2, 0.5);
-        rechteck[1].setzeMittelpunkt(5, -4.25);
-        //2.stufe
-        rechteck[2].setzeGroesse(2, 0.5);
-        rechteck[2].setzeMittelpunkt(8, -1.75);
-        //3.stufe
-        rechteck[3].setzeGroesse(2, 0.5);
-        rechteck[3].setzeMittelpunkt(5, 0.75);
-        //4.stufe
-        if(variante==2){
-            rechteck[4].setzeGroesse(2, 0.5);
-            rechteck[4].setzeMittelpunkt(8, 3.25);
-        }
-        //2.Ebene
-        rechteck[5].setzeGroesse(20, 0.5);
-        rechteck[5].setzeMittelpunkt(20, 4.25);
-        //wand an hindernis
-        rechteck[6].setzeGroesse(0.5, 4.55);
-        rechteck[6].setzeMittelpunkt(18.75, 7.725);
-        //ebene über hindernis
-        rechteck[7].setzeGroesse(5, 0.5);
-        rechteck[7].setzeMittelpunkt(16, 9.75);
-
-        //hindernisse(0-9)
-        //lern hindernis
-        rechteck2[0].setzeGroesse(2, 0.5);
-        rechteck2[0].setzeMittelpunkt(2, 2.25);
-        //bodenhindernis
-        rechteck2[1].setzeGroesse(10, 1);
-        rechteck2[1].setzeMittelpunkt(20, -7);
-        //ducken lernen
-        rechteck2[6].setzeGroesse(5, 4);
-        rechteck2[6].setzeMittelpunkt(16, 7.5);
-        //rahmen(10-20)
-        rechteck2[10].setzeGroesse(200,0.1);
-        rechteck2[10].setzeMittelpunkt(0, -20);
-
-        //info laufen
-        info[0].setzeInhalt("Nutze die Pfeiltasten um zu laufen");
-        info[0].setzeMittelpunkt(-2, -6);
-        //info springen
-        info[1].setzeInhalt("Mit dem Pfeil nach oben kannst du springen");
-        info[1].setzeMittelpunkt(2, -6);
-        //info ducken
-        info[2].setzeInhalt("ducken");
-        info[2].setzeMittelpunkt(11, 5);
-        //info gewinn
-        info[3].setzeInhalt("gewinn");
-        info[3].setzeMittelpunkt(20, 5);
+        spielfigur.setzeMittelpunkt(2.5, -8);
+        spielfigur2.setzeMittelpunkt(-2.5, -8);
+        
     }
-    
-    
+
     public void level2(){
-        
-        //rahmen
-        rechteck2[0].setzeGroesse(200,0.1);
-        rechteck2[0].setzeMittelpunkt(0, -20);
-
-        spielfigur.setzeMittelpunkt(0, 0); //eig 0 0
-        spielfigur.setzeMittelpunkt(0, 0);
-
-        //boden
-        rechteck[0].setzeGroesse(50, 1);
-        rechteck[0].setzeMittelpunkt(20, -7);
-        //sensor
-        rechteck[1].setzeGroesse(1, 1);
-        rechteck[1].setzeMittelpunkt(15.5, -7);
-        rechteck[1].setzeSichtbar(false);
-        //decke
-        rechteck[2].setzeGroesse(20, 10);
-        rechteck[2].setzeMittelpunkt(15, 5);
-        //fallen
-        rechteck[3].setzeGroesse(8, 0.5);
-        rechteck[3].setzeMittelpunkt(18, 0.5);
-        rechteck[3].setzeSichtbar(false);
-        //hinderniss
-        rechteck[4].setzeGroesse(9, 5.75);
-        rechteck[4].setzeMittelpunkt(30.1, -3.625);
-        //2. etage
-        rechteck[5].setzeGroesse(1, 0.5);
-        rechteck[5].setzeMittelpunkt(0, 10);
-
-        rechteck[6].setzeGroesse(1, 0.5);
-        rechteck[6].setzeMittelpunkt(-2.5, 12.5);
-
-        rechteck[7].setzeGroesse(1, 0.5);
-        rechteck[7].setzeMittelpunkt(-5, 15);
-
-        rechteck[8].setzeGroesse(1, 0.5);
-        rechteck[8].setzeMittelpunkt(0,17);
-
-        rechteck[9].setzeGroesse(20, 0.5);
-        rechteck[9].setzeMittelpunkt(15,17);
-
-        kreis[10].setzeRadius(2.5);
-        kreis[10].setzeMittelpunkt(15,20);
-
-        kreis[11].setzeRadius(2.5);
-        kreis[11].setzeMittelpunkt(20,20);
-
-        rechteck[10].setzeGroesse(7, 2);
-        rechteck[10].setzeMittelpunkt(25,23);
-
-        kreis[12].setzeRadius(0.3);
-        kreis[12].setzeMittelpunkt(32.5,25);
-
-        rechteck[11].setzeGroesse(9, 0.3);
-        rechteck[11].setzeMittelpunkt(41,27);
-
-        gewinn.setzeMittelpunkt(45, 27.5);
-
-        //hindernisse(0-9)
-        rechteck2[1].setzeGroesse(0.1, 9.6);
-        rechteck2[1].setzeMittelpunkt(25.05,5.2 );
 
     }
+
     public void level3(){
-        //spielfigur.setzeMittelpunkt(0, -5); //anfang, anderes um auszuprobieren
-        spielfigur.setzeMittelpunkt(32, 37);
-        beruehrt=false;
-        //rahmen
-        rechteck2[0].setzeGroesse(200,0.1);
-        rechteck2[0].setzeMittelpunkt(0, -20);
-
-        //boden
-        rechteck[0].setzeGroesse(26, 1);
-        rechteck[0].setzeMittelpunkt(8, -7);
-        //ducken
-        rechteck[1].setzeGroesse(10,1);
-        rechteck[1].setzeMittelpunkt(15, -4.5);
-
-        //aufzug
-        rechteck[3].setzeGroesse(5,1);
-        rechteck[3].setzeMittelpunkt(27, 10);
-        rechteck[3].animiereGerade(6, 27, -7, true);
-        rechteck[3].macheKinematisch();
-        rechteck[4].setzeGroesse(5,1);
-        rechteck[4].setzeMittelpunkt(27, 10);
-        rechteck[4].animiereGerade(6, 27, -7, true);
-        //ebene2
-        rechteck[5].setzeGroesse(10, 1);
-        rechteck[5].setzeMittelpunkt(15, 9);
-        //wand
-        rechteck[6].setzeGroesse(1, 10);
-        rechteck[6].setzeMittelpunkt(10.5, 14.5);
-        //ebene3
-        rechteck[7].setzeGroesse(15, 1);
-        rechteck[7].setzeMittelpunkt(-11, 10);
-        //knopf
-        rechteck[8].setzeGroesse(1, 1);
-        rechteck[8].setzeMittelpunkt(-18, 11);
-        rechteck[8].setzeFarbe("gelb");
-        //aufzug2
-        rechteck[9].setzeGroesse(4, 1);
-        rechteck[9].setzeMittelpunkt(-1.5, 5);
-        rechteck[9].macheKinematisch();
-        rechteck[9].setzeSichtbar(false);
-        rechteck[10].setzeGroesse(4, 1);
-        rechteck[10].setzeMittelpunkt(-1.5, 5);
-        //ebene tür
-        rechteck[11].setzeGroesse(5, 1);
-        rechteck[11].setzeMittelpunkt(-7.5, 20);
-        rechteck[12].setzeGroesse(1, 1);
-        rechteck[12].setzeMittelpunkt(-7.5, 21);
-        rechteck[12].setzeFarbe("gelb");
-        //ebene4
-        rechteck[13].setzeGroesse(20, 1);
-        rechteck[13].setzeMittelpunkt(29, 20);
-        rechteck[13].setzeSichtbar(false);
-        //hochklettern
-        rechteck[14].setzeGroesse(1, 10);
-        rechteck[14].setzeMittelpunkt(35, 28);
-        rechteck[15].setzeGroesse(1, 10);
-        rechteck[15].setzeMittelpunkt(38.5, 28);
-        //bewegt nach links
-        rechteck[16].setzeGroesse(5, 1);
-        rechteck[16].setzeMittelpunkt(33, 33.5);
-        
-
-        //rote
-        rechteck2[1].setzeGroesse(1, 5);
-        rechteck2[1].setzeMittelpunkt(-4.5, -4);
-        rechteck2[1].animiereGerade(8.7, 30, -4, false);
-        //springen geduckt
-        rechteck2[2].setzeGroesse(0.3, 0.1);
-        rechteck2[2].setzeMittelpunkt(11, -6.5);
-        rechteck2[3].setzeGroesse(0.3, 0.1);
-        rechteck2[3].setzeMittelpunkt(13, -6.5);
-        rechteck2[4].setzeGroesse(0.3, 0.1);
-        rechteck2[4].setzeMittelpunkt(15, -6.5);
-        rechteck2[5].setzeGroesse(0.3, 0.1);
-        rechteck2[5].setzeMittelpunkt(17, -6.5);
-        rechteck2[6].setzeGroesse(0.3, 0.1);
-        rechteck2[6].setzeMittelpunkt(19, -6.5);
-        rechteck2[7].setzeGroesse(10, 0.1);
-        rechteck2[7].setzeMittelpunkt(15, -3.85);
-        //hocklettern in der mitte
-        rechteck2[8].setzeGroesse(0.1, 10);
-        rechteck2[8].setzeMittelpunkt(34.45, 28);
-        rechteck2[9].setzeGroesse(0.1, 10);
-        rechteck2[9].setzeMittelpunkt(39.05, 28);
-
-        //kreise
-        kreis[0].setzeMittelpunkt(2, -5.5);
-        kreis[0].setzeRadius(0.4);
-
-        kreis[1].setzeMittelpunkt(7, -5.5);
-        kreis[1].setzeRadius(0.4);
-
-        kreis2[0].setzeRadius(0.3);
-        kreis2[0].setzeMittelpunkt(36.3, 24.5);
-        kreis2[1].setzeRadius(0.3);
-        kreis2[1].setzeMittelpunkt(36.3, 30.5);
-        kreis2[2].setzeRadius(0.3);
-        kreis2[2].setzeMittelpunkt(37.2, 27.5);
+    
     }
+
     public void level4() {
-        spielfigur.setzeMittelpunkt(0, -5);
-        
-        //rahmen
-        rechteck2[0].setzeGroesse(200,0.1);
-        rechteck2[0].setzeMittelpunkt(0, -20);
-
-        //boden
-        
-        rechteck[0].setzeGroesse(26, 1);
-        rechteck[0].setzeMittelpunkt(8, -7);
-        //ducken
-        rechteck2[3].setzeGroesse(10,1);
-        rechteck2[3].setzeMittelpunkt(15, -4.5);
-        
-        //aufzug
-        rechteck[3].setzeGroesse(5,1);
-        rechteck[3].setzeMittelpunkt(32, 20);
-        rechteck[3].animiereGerade(3, 32, -7, true);
-        rechteck[3].macheKinematisch();
-        rechteck[3].setzeGroesse(5,1);
-        rechteck[3].setzeMittelpunkt(32, 12);
-        rechteck[3].animiereGerade(3, 32, -20, true);
-        
-        //rote
-        rechteck2[1].setzeGroesse(1, 5);
-        rechteck2[1].setzeMittelpunkt(-4.5, -4);
-        rechteck2[1].animiereGerade(11, 40, -4, false);
-        
-        //killerdecke
-        rechteck2[6].setzeGroesse(5,1);
-        rechteck2[6].setzeMittelpunkt(20, 7);
-        rechteck2[6].animiereGerade(9, 20, -7, true);
-        
-        //Stepstone
-        rechteck[5].setzeGroesse(3, 1);
-        rechteck[5].setzeMittelpunkt(27, -7);
-        
-        //killerdeckesteht
-        rechteck2[7].setzeGroesse(5,1);
-        rechteck2[7].setzeMittelpunkt(32, 10);
-        
-        //plattform
-        rechteck[7].setzeGroesse(5,1);
-        rechteck[7].setzeMittelpunkt(25,5);
-        
-        //wand
-        rechteck[6].setzeGroesse(1, 10);
-        rechteck[6].setzeMittelpunkt(27, 5);
-        
-        //killerdecke2
-        rechteck2[8].setzeGroesse(5,1);
-        rechteck2[8].setzeMittelpunkt(30, 15);
-        
-        //rote
-        rechteck2[9].setzeGroesse(1, 10);
-        rechteck2[9].setzeMittelpunkt(50, 10);
-        rechteck2[9].animiereGerade(15, 0, 10, true);
-        
-        //plattform2
-        rechteck[8].setzeGroesse(4,1);
-        rechteck[8].setzeMittelpunkt(15,5);
-        
-        //boden
-        rechteck[10].setzeGroesse(30, 1);
-        rechteck[10].setzeMittelpunkt(0, 5);
-        
-        
-        //fireball1
-        kreis2[11].setzeRadius(0.4);
-        kreis2[11].setzeMittelpunkt(0, 5);
-        kreis2[11].animiereGerade(60, 20, 5, false);
-        
-         //fireball2
-       kreis2[12].setzeRadius(0.4);
-        kreis2[12].setzeMittelpunkt(0, 7);
-        kreis2[12].animiereGerade(50, 20, 7, false);
-        
-        
-         //fireball3
-        kreis2[13].setzeRadius(0.4);
-        kreis2[13].setzeMittelpunkt(0, 6);
-        kreis2[13].animiereGerade(30, 20, 6, false);
-        
-        
-        
+    
     }
-    
-    
+
 }
