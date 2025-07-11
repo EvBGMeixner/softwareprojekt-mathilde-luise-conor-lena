@@ -10,9 +10,10 @@ public class HüpfUndRenne extends SPIEL
     boolean raktiv;
     boolean alive;
     boolean klein;
+    boolean knopftot;
     FIGUR spielfigur;
     TEXT textt;
-    
+
     RECHTECK gewinn;
     RECHTECK[] rechteck;
     RECHTECK[] rechteck2;//bei Berührung tot
@@ -44,20 +45,21 @@ public class HüpfUndRenne extends SPIEL
         //spielfigur.setzeFarbe("grün");
         gewinn.setzeFarbe("grün");
 
-        
  
         rechteck=new RECHTECK[20];
         rechteck2=new RECHTECK[20];
- 
+
         kreis = new KREIS[20];
 
         kreis = new KREIS[12];
         kreis2 = new KREIS[12];
- 
+
         knopf= new KNOPF[10];
         info=new INFO[10];
         text = new TEXT[10];
         figur=new FIGUR[4];
+
+        
         for(int i=0;i<text.length;i++){
             text[i]= new TEXT(0, 100, 1, "a");
         }
@@ -72,6 +74,7 @@ public class HüpfUndRenne extends SPIEL
             rechteck2[i].setzeFarbe("Rot");
             rechteck2[i].setzeTransparenz(0.5);
         }
+        rechteck2[11].setzeTransparenz(1);
         for(int i=0;i<kreis.length;i++){
             kreis[i]= new KREIS(1);
             kreis[i].setzeMittelpunkt(0, 100);
@@ -126,6 +129,7 @@ public class HüpfUndRenne extends SPIEL
             text[0].setzeMittelpunkt(0, 100);
             level();
             knopf[0].setzeMittelpunkt(0, 100);
+            rechteck2[11].setzeTransparenz(1);
         }
         for(int i=1;i<anzahlLevel+1;i++){
             if(knopf[i].klick(x,y)==true&&i<=level2){
@@ -211,6 +215,12 @@ public class HüpfUndRenne extends SPIEL
                     info[i].textVerbergen();
                 }
             }
+            if(rechteck2[11].nenneTransparenz()<=0.7&&knopftot==false){
+                knopftot=true;
+                knopf[0].setzeInhalt("Neustart");
+                knopf[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()-5);
+                knopf[0].rechteck.setzeTransparenz(0.5);
+            }
 
         }
     }
@@ -277,39 +287,35 @@ public class HüpfUndRenne extends SPIEL
     }
     //sterben-> noch verschönern
     public void sterben(){
-        if(!alive){
-            return;
+        if(alive){
+            knopftot=false;
+
+            alive=false;
+            maus=true;
+
+            rechteck2[11].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy());
+            rechteck2[11].setzeGroesse(40, 30);
+            rechteck2[11].setzeTransparenz(1);
+            rechteck2[11].animiereTransparenz(0.5, 0.69);
+            spielfigur.machePassiv();
+
+            text[0].setzeSchriftHoehe(4);
+            text[0].setzeInhalt("GAME OVER");
+
+            text[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()+5);
+            text[0].setzeFarbe("schwarz");
+
+            //aufraeumen();
+            //knopf[0].setzeInhalt("Neustart");
+            //knopf[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()-5);
+            //knopf[0].rechteck.setzeTransparenz(0.5);
+            //setzeKamerafokus(knopf[0].rechteck);
+            if(klein==true){
+                spielfigur.skaliere(2);
+                klein=false;
+            }
+            spielfigur.spiegelnHorizontal(false);   
         }
-        
-        
-        alive=false;
-        maus=true;
-
-
-        rechteck2[11].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy());
-        rechteck2[11].setzeGroesse(40, 30);
-        rechteck2[11].setzeTransparenz(1);
-        rechteck2[11].animiereTransparenz(0.5, 0.7);
-        spielfigur.machePassiv();
-        
-        textt=new TEXT(spielfigur.nenneMx(), spielfigur.nenneMy()+5,4, "GAME OVER");
-        textt.setzeFarbe("schwarz");
-        //text[0].setzeSchriftHoehe(2);
-        //text[0].setzeInhalt("GAME OVER");
-        
-        //text[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()+5);
-        //text[0].setzeFarbe("schwarz");
-
-        //aufraeumen();
-        knopf[0].setzeInhalt("Neustart");
-        knopf[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()-5);
-        knopf[0].rechteck.setzeTransparenz(0.5);
-        //setzeKamerafokus(knopf[0].rechteck);
-        if(klein==true){
-            spielfigur.skaliere(2);
-            klein=false;
-        }
-        spielfigur.spiegelnHorizontal(false);    
     }
     //gewinnen
     public void gewinnen(){
@@ -429,11 +435,10 @@ public class HüpfUndRenne extends SPIEL
         //rahmen
         rechteck2[0].setzeGroesse(200,0.1);
         rechteck2[0].setzeMittelpunkt(0, -20);
-        
-        
+
         spielfigur.setzeMittelpunkt(0, 0); //eig 0 0
         spielfigur.setzeMittelpunkt(0, 0);
- 
+
         //boden
         rechteck[0].setzeGroesse(50, 1);
         rechteck[0].setzeMittelpunkt(20, -7);
@@ -472,26 +477,23 @@ public class HüpfUndRenne extends SPIEL
 
         kreis[11].setzeRadius(2.5);
         kreis[11].setzeMittelpunkt(20,20);
-        
+
         rechteck[10].setzeGroesse(7, 2);
         rechteck[10].setzeMittelpunkt(25,23);
-        
+
         kreis[12].setzeRadius(0.3);
         kreis[12].setzeMittelpunkt(32.5,25);
-        
+
         rechteck[11].setzeGroesse(9, 0.3);
         rechteck[11].setzeMittelpunkt(41,27);
-        
+
         gewinn.setzeMittelpunkt(45, 27.5);
-        
-        
+
         //hindernisse(0-9)
         rechteck2[1].setzeGroesse(0.1, 9.6);
         rechteck2[1].setzeMittelpunkt(25.05,5.2 );
 
-    
     }
-
     public void level3(){
         //spielfigur.setzeMittelpunkt(0, -5); //anfang, anderes um auszuprobieren
         spielfigur.setzeMittelpunkt(35, 35);
@@ -589,9 +591,6 @@ public class HüpfUndRenne extends SPIEL
         kreis2[2].setzeMittelpunkt(37.2, 27.5);
     }
 
-    
-    
-    
     
     
 }
