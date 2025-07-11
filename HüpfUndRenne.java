@@ -11,7 +11,8 @@ public class HüpfUndRenne extends SPIEL
     boolean alive;
     boolean klein;
     FIGUR spielfigur;
-    //RECHTECK spielfigur;
+    TEXT textt;
+    
     RECHTECK gewinn;
     RECHTECK[] rechteck;
     RECHTECK[] rechteck2;//bei Berührung tot
@@ -270,22 +271,33 @@ public class HüpfUndRenne extends SPIEL
     }
     //sterben-> noch verschönern
     public void sterben(){
+        if(!alive){
+            return;
+        }
+        
+        
         alive=false;
         maus=true;
+
 
         rechteck2[11].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy());
         rechteck2[11].setzeGroesse(40, 30);
         rechteck2[11].setzeTransparenz(1);
         rechteck2[11].animiereTransparenz(0.5, 0.7);
         spielfigur.machePassiv();
-        text[0].setzeInhalt("GAME OVER");
-        text[0].setzeSchriftHoehe(4);
-        text[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()+5);
-        text[0].setzeFarbe("schwarz");
+        
+        textt=new TEXT(spielfigur.nenneMx(), spielfigur.nenneMy()+5,4, "GAME OVER");
+        textt.setzeFarbe("schwarz");
+        //text[0].setzeSchriftHoehe(2);
+        //text[0].setzeInhalt("GAME OVER");
+        
+        //text[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()+5);
+        //text[0].setzeFarbe("schwarz");
 
         //aufraeumen();
         knopf[0].setzeInhalt("Neustart");
         knopf[0].setzeMittelpunkt(spielfigur.nenneMx(), spielfigur.nenneMy()-5);
+        knopf[0].rechteck.setzeTransparenz(0.5);
         //setzeKamerafokus(knopf[0].rechteck);
         if(klein==true){
             spielfigur.skaliere(2);
