@@ -44,10 +44,16 @@ public class HüpfUndRenne extends SPIEL
         //spielfigur.setzeFarbe("grün");
         gewinn.setzeFarbe("grün");
 
+        
+ 
         rechteck=new RECHTECK[20];
         rechteck2=new RECHTECK[20];
+ 
+        kreis = new KREIS[20];
+
         kreis = new KREIS[12];
         kreis2 = new KREIS[12];
+ 
         knopf= new KNOPF[10];
         info=new INFO[10];
         text = new TEXT[10];
@@ -423,8 +429,11 @@ public class HüpfUndRenne extends SPIEL
         //rahmen
         rechteck2[0].setzeGroesse(200,0.1);
         rechteck2[0].setzeMittelpunkt(0, -20);
-
+        
+        
+        spielfigur.setzeMittelpunkt(0, 0); //eig 0 0
         spielfigur.setzeMittelpunkt(0, 0);
+ 
         //boden
         rechteck[0].setzeGroesse(50, 1);
         rechteck[0].setzeMittelpunkt(20, -7);
@@ -463,6 +472,19 @@ public class HüpfUndRenne extends SPIEL
 
         kreis[11].setzeRadius(2.5);
         kreis[11].setzeMittelpunkt(20,20);
+        
+        rechteck[10].setzeGroesse(7, 2);
+        rechteck[10].setzeMittelpunkt(25,23);
+        
+        kreis[12].setzeRadius(0.3);
+        kreis[12].setzeMittelpunkt(32.5,25);
+        
+        rechteck[11].setzeGroesse(9, 0.3);
+        rechteck[11].setzeMittelpunkt(41,27);
+        
+        gewinn.setzeMittelpunkt(45, 27.5);
+        
+        
         //hindernisse(0-9)
         rechteck2[1].setzeGroesse(0.1, 9.6);
         rechteck2[1].setzeMittelpunkt(25.05,5.2 );
