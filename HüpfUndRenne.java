@@ -11,6 +11,7 @@ public class HüpfUndRenne extends SPIEL
     boolean alive;
     boolean klein;
     boolean knopftot;
+    boolean beruehrt;
     FIGUR spielfigur;
     TEXT textt;
 
@@ -116,7 +117,7 @@ public class HüpfUndRenne extends SPIEL
 
         setzeSchwerkraft(15);
 
-        //zeigeKoordinatensystem(true);   
+        zeigeKoordinatensystem(true);   
     }
 
     public void klickReagieren(double x, double y) 
@@ -205,6 +206,10 @@ public class HüpfUndRenne extends SPIEL
                 if(spielfigur.istSichtbar()==false&&spielfigur.nenneMx()>19){
                     spielfigur.setzeSichtbar(true);
                     spielfigur.macheAktiv();
+                }
+                if(spielfigur.beruehrt(rechteck[16])&&beruehrt==false){
+                    rechteck[16].animiereGerade(3, 23, 33.5, false);
+                    beruehrt=true;
                 }
             }
             for(int i=0;i<info.length;i++){
@@ -496,7 +501,8 @@ public class HüpfUndRenne extends SPIEL
     }
     public void level3(){
         //spielfigur.setzeMittelpunkt(0, -5); //anfang, anderes um auszuprobieren
-        spielfigur.setzeMittelpunkt(35, 35);
+        spielfigur.setzeMittelpunkt(35, 22);
+        beruehrt=false;
         //rahmen
         rechteck2[0].setzeGroesse(200,0.1);
         rechteck2[0].setzeMittelpunkt(0, -20);
@@ -551,7 +557,8 @@ public class HüpfUndRenne extends SPIEL
         rechteck[15].setzeMittelpunkt(38.5, 28);
         //bewegt nach links
         rechteck[16].setzeGroesse(5, 1);
-        rechteck[16].setzeMittelpunkt(32.5, 33.5);
+        rechteck[16].setzeMittelpunkt(33, 33.5);
+        
 
         //rote
         rechteck2[1].setzeGroesse(1, 5);
@@ -583,11 +590,11 @@ public class HüpfUndRenne extends SPIEL
         kreis[1].setzeMittelpunkt(7, -5.5);
         kreis[1].setzeRadius(0.4);
 
-        kreis2[0].setzeRadius(0.4);
+        kreis2[0].setzeRadius(0.3);
         kreis2[0].setzeMittelpunkt(36.3, 24.5);
-        kreis2[1].setzeRadius(0.4);
+        kreis2[1].setzeRadius(0.3);
         kreis2[1].setzeMittelpunkt(36.3, 30.5);
-        kreis2[2].setzeRadius(0.4);
+        kreis2[2].setzeRadius(0.3);
         kreis2[2].setzeMittelpunkt(37.2, 27.5);
     }
 
