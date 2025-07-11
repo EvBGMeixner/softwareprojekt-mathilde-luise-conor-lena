@@ -15,6 +15,7 @@ public class KNOPF
         
         rechteck = new RECHTECK(8,3);
         rechteck.setzeMittelpunkt(x, y);
+        rechteck.setzeFarbe("grün");
         text = new TEXT(x,y,1,inhalt);
         
     }
