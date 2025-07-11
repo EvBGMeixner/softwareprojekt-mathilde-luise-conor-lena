@@ -501,7 +501,7 @@ public class HüpfUndRenne extends SPIEL
     }
     public void level3(){
         //spielfigur.setzeMittelpunkt(0, -5); //anfang, anderes um auszuprobieren
-        spielfigur.setzeMittelpunkt(35, 22);
+        spielfigur.setzeMittelpunkt(32, 37);
         beruehrt=false;
         //rahmen
         rechteck2[0].setzeGroesse(200,0.1);
@@ -534,6 +534,7 @@ public class HüpfUndRenne extends SPIEL
         //knopf
         rechteck[8].setzeGroesse(1, 1);
         rechteck[8].setzeMittelpunkt(-18, 11);
+        rechteck[8].setzeFarbe("gelb");
         //aufzug2
         rechteck[9].setzeGroesse(4, 1);
         rechteck[9].setzeMittelpunkt(-1.5, 5);
@@ -546,6 +547,7 @@ public class HüpfUndRenne extends SPIEL
         rechteck[11].setzeMittelpunkt(-7.5, 20);
         rechteck[12].setzeGroesse(1, 1);
         rechteck[12].setzeMittelpunkt(-7.5, 21);
+        rechteck[12].setzeFarbe("gelb");
         //ebene4
         rechteck[13].setzeGroesse(20, 1);
         rechteck[13].setzeMittelpunkt(29, 20);
