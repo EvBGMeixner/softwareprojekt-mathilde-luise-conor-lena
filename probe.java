@@ -7,24 +7,32 @@
  */
 public class probe extends SPIEL
 {
-    RECHTECK rechteck;
-    RECHTECK a;
+    STEIN[] stein;
     
     public probe()
     {
-        rechteck= new RECHTECK(5,5);
-        rechteck.setzeMittelpunkt(0, 0);
-        //setzeHintergrundgrafik("extensions2/Bild");
-        a=new RECHTECK(5,5);
-        a.setzeEbenenposition(-12);
-        a.setzeMittelpunkt(0, 0);
+        stein = new STEIN[4];
+        for(int i=0;i<stein.length;i++){
+            stein[i]= new STEIN();
+            
+        }
     }
     public void a(){
-        if(rechteck.beruehrt(a)){
-            System.out.println(true);
+        stein[0].setzeGroesse(49, 1);
+        stein[0].setzeMittelpunkt(0, 0);
+    }
+    public void b(){
+        for(int i=0;i<stein.length;i++){
+            //for(int j=0;j<stein[i].steine.length; j++){
+                
+                stein[i].steine=null;
+            
+            //}
+            
+            
         }
-        else{
-        System.out.println(false);
-        }
+    }
+    void c(){
+        stein[0].setzeMittelpunkt(0, 3);
     }
 }

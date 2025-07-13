@@ -124,7 +124,7 @@ implements TastenReagierbar, Ticker, MausKlickReagierbar, MausRadReagierbar, Bil
             this.hintergrundbild.setzeSichtbar( false );
         }
         this.hintergrundbild = new Figur ( "hintergrund" , pfad , 1 , 1 );
-        this.hintergrundbild.setzeEbenenposition( -1 );
+        this.hintergrundbild.setzeEbenenposition( -2 );
         this.hintergrundbild.setzeMittelpunkt( 0 , 0 );
         this.hintergrundbild.setzeSichtbar( true );
     }

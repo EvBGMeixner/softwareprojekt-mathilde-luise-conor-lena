@@ -21,7 +21,8 @@ public class s2 extends SPIEL
     RECHTECK[] rechteck2;//bei Berührung tot
     KNOPF[] knopf;
     FIGUR[] figur;
-
+    STEIN[] stein;
+    
     INFO[] info;
 
     TEXT[] text; 
@@ -64,6 +65,7 @@ public class s2 extends SPIEL
         info=new INFO[10];
         text = new TEXT[10];
         figur=new FIGUR[4];
+        stein=new STEIN[5];
 
         for(int i=0;i<text.length;i++){
             text[i]= new TEXT(0, 100, 1, "a");
@@ -106,6 +108,9 @@ public class s2 extends SPIEL
             figur[i]= new FIGUR("schloss","extensions2/schloss.png",1,1);
             figur[i].skaliere(0.1);
             figur[i].setzeMittelpunkt(2.9, -3.7*i+4.15);
+        }
+        for(int i=0;i<stein.length;i++){
+            stein[i]= new STEIN();
         }
         level=0;
         level2=4;//eig 1 aber besser zum level ausprobieren
@@ -409,8 +414,8 @@ public class s2 extends SPIEL
         spielfigur.macheAktiv();
         spielfigur2.macheAktiv();
         //boden
-        rechteck[0].setzeGroesse(30, 1);
-        rechteck[0].setzeMittelpunkt(0, -10);
+        stein[0].setzeGroesse(11, 1);
+        
 
         if(level==1){
             level1();
