@@ -13,6 +13,7 @@ public class INFO
         figur.skaliere(0.05);
         text=new TEXT(x,y,0.5,inhalt);
         text.setzeSichtbar(false);
+        text.setzeEbenenposition(3);
     }
     public void textAnzeigen(){
         text.setzeSichtbar(true);
