@@ -441,10 +441,10 @@ public class HüpfUndRenne extends SPIEL
         info[1].setzeInhalt("Mit dem Pfeil nach oben kannst du springen");
         info[1].setzeMittelpunkt(2, -6);
         //info ducken
-        info[2].setzeInhalt("ducken");
+        info[2].setzeInhalt("Der Pfeil nach unten macht dich kleiner");
         info[2].setzeMittelpunkt(11, 5);
         //info gewinn
-        info[3].setzeInhalt("gewinn");
+        info[3].setzeInhalt("An Wänden kannst du höher springen, wenn du häufiger springst");
         info[3].setzeMittelpunkt(20, 5);
     }
     
