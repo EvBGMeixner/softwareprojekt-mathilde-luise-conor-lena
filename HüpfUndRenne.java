@@ -45,7 +45,7 @@ public class HüpfUndRenne extends SPIEL
         hintergrundbild.setzeEbenenposition( -2 );
         hintergrundbild.fuegeZustandVonSpritesheetHinzu("level", "extensions2/Unbenannt.png", 1, 1);
         hintergrundbild.skaliere(0.73);
-        hintergrundbild.skaliere(3);
+        hintergrundbild.skaliere(3.33);
         hintergrundbild.setzeMittelpunkt(0,0);
         
         gewinn=new RECHTECK(1,1);
@@ -72,7 +72,7 @@ public class HüpfUndRenne extends SPIEL
         info=new INFO[10];
         text = new TEXT[10];
         figur=new FIGUR[4];
-        stein=new STEIN[15];
+        stein=new STEIN[16];
         
         for(int i=0;i<text.length;i++){
             text[i]= new TEXT(0, 100, 1, "a");
@@ -121,7 +121,7 @@ public class HüpfUndRenne extends SPIEL
             
         }
         level=0;
-        level2=1;//eig 1 aber besser zum level ausprobieren
+        level2=1;
         variante=1;
         anzahlLevel=4;
         raktiv=false;
@@ -220,6 +220,7 @@ public class HüpfUndRenne extends SPIEL
                     stein[3].machePassiv();
                     raktiv=false;
                 }
+                
             }
             if(level==3){
                 if(spielfigur.beruehrt(rechteck[8])){
@@ -393,7 +394,7 @@ public class HüpfUndRenne extends SPIEL
         
         
         hintergrundbild.setzeZustand("start");
-        hintergrundbild.skaliere(0.333);
+        hintergrundbild.skaliere(0.3);
         hintergrundbild.setzeMittelpunkt(0,0);
 
         //neu
@@ -444,7 +445,7 @@ public class HüpfUndRenne extends SPIEL
         spielfigur.macheAktiv();
         setzeKamerafokus(spielfigur);
         hintergrundbild.setzeZustand("level");
-        hintergrundbild.skaliere(3);
+        hintergrundbild.skaliere(3.33);
         hintergrundbild.setzeMittelpunkt(5,5);
         if(level==1){
             level1();
@@ -584,18 +585,24 @@ public class HüpfUndRenne extends SPIEL
         //kreis[11].setzeRadius(2.5);
         //kreis[11].setzeMittelpunkt(20,20);
         stein[13].setzeGroesse(1, 1);
-        stein[13].setzeMittelpunkt(17,20);
+        stein[13].setzeMittelpunkt(17,19);
         
-        stein[10].setzeGroesse(7, 4);
-        stein[10].setzeMittelpunkt(25,23);
+        stein[14].setzeGroesse(1, 1);
+        stein[14].setzeMittelpunkt(20, 21);
+        
+        stein[10].setzeGroesse(1, 1);
+        stein[10].setzeMittelpunkt(23,23);
 
         stein[12].setzeGroesse(1,1);
-        stein[12].setzeMittelpunkt(32.5,25);
+        stein[12].setzeMittelpunkt(26,25);
+        
+        stein[15].setzeGroesse(1,1);
+        stein[15].setzeMittelpunkt(29,27);
 
         stein[11].setzeGroesse(9, 1);
-        stein[11].setzeMittelpunkt(41,27);
+        stein[11].setzeMittelpunkt(37,27);
 
-        gewinn.setzeMittelpunkt(45, 27.5);
+        gewinn.setzeMittelpunkt(41, 27.5);
 
         //hindernisse(0-9)
         //rechteck2[1].setzeGroesse(0.1, 9.6);
