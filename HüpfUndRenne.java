@@ -406,7 +406,10 @@ public class HüpfUndRenne extends SPIEL
             figur[i].setzeSichtbar(true);
         }
         for(int i=0;i<level2;i++){
-            figur[i].setzeSichtbar(false);
+            if(i<4){
+                figur[i].setzeSichtbar(false);
+            }
+            
         }
 
     }
@@ -784,22 +787,36 @@ public class HüpfUndRenne extends SPIEL
         rechteck[10].setzeMittelpunkt(0, 5);
         
         
+        rechteck[11].setzeGroesse(2,1);  
+        rechteck[11].setzeMittelpunkt(-18, 6); 
+        rechteck[12].setzeGroesse(2,1);  
+        rechteck[12].setzeMittelpunkt(-22, 8); 
+        rechteck[13].setzeGroesse(2,1);  
+        rechteck[13].setzeMittelpunkt(-22, 9); 
+        rechteck[14].setzeGroesse(2,1);  
+        rechteck[14].setzeMittelpunkt(-22, 10); 
+        rechteck[15].setzeGroesse(8,1);  
+        rechteck[15].setzeMittelpunkt(-14, 16); 
+        
+        gewinn.setzeMittelpunkt(-11,17);
+        gewinn.setzeSichtbar(true);
+        
+
+        
         //fireball1
         kreis2[11].setzeRadius(0.4);
         kreis2[11].setzeMittelpunkt(0, 5);
         kreis2[11].animiereGerade(60, 20, 5, false);
-        
-         //fireball2
-       kreis2[12].setzeRadius(0.4);
+
+        //fireball2
+        kreis2[12].setzeRadius(0.4);
         kreis2[12].setzeMittelpunkt(0, 7);
         kreis2[12].animiereGerade(50, 20, 7, false);
-        
-        
-         //fireball3
+
+        //fireball3
         kreis2[13].setzeRadius(0.4);
         kreis2[13].setzeMittelpunkt(0, 6);
         kreis2[13].animiereGerade(30, 20, 6, false);
-        
         
         
     }
